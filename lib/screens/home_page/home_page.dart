@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:direcionamento/model/FieldStudyModel.dart';
 import 'package:direcionamento/screens/field_Study_details/field_study_details.dart';
+import 'package:direcionamento/screens/root_app/root_app.dart';
 import 'package:direcionamento/screens/school_page/school_page.dart';
 import 'package:direcionamento/screens/utils/data.dart';
 import 'package:direcionamento/theme/global_color.dart';

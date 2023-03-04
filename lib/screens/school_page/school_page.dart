@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:direcionamento/model/university.dart';
+import 'package:direcionamento/screens/school_page/university_page.dart';
 import 'package:direcionamento/screens/utils/data.dart';
 import 'package:direcionamento/theme/global_color.dart';
+import 'package:direcionamento/widgets/custom_bottomNavigationBar.dart';
 import 'package:direcionamento/widgets/custom_categories.dart';
 import 'package:direcionamento/widgets/custom_notification.dart';
 import 'package:direcionamento/widgets/custom_school_item.dart';
@@ -38,6 +40,7 @@ class _SchoolPageState extends State<SchoolPage> {
           )
         ],
       ),
+      bottomNavigationBar: CustomBootomNavigationBar(),
     );
   }
 
@@ -48,7 +51,7 @@ class _SchoolPageState extends State<SchoolPage> {
         children: [
           Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -164,6 +167,9 @@ class _SchoolPageState extends State<SchoolPage> {
       items: List.generate(universty.length, (index){
         final item = universty[index];
         return CustomSchoolItem(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(university: item,)));
+          },
             name: item.name,
             image: item.image,
             location: item.location,

@@ -1,4 +1,5 @@
 import 'package:direcionamento/model/Category.dart';
+import 'package:direcionamento/model/course.dart';
 import 'package:direcionamento/model/university.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -90,6 +91,80 @@ List<University> universty =[
       image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       location: "Luanda"
   ),
+
+];
+
+
+List <Course> courses = [
+  Course(
+    //idcurso: 1,
+      name: "Engenharia Informática",
+      image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      about: "1 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
+      years: "4 Anos",
+      price: 100.0,
+      disc:"As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:",
+      regime: "Através do Curso de Acesso à UGS ou por Exame às disciplinas de: Português + Matemática.",
+      saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
+
+  ),
+  Course(
+    // idcurso: 2,
+      name: "Informática de Gestão",
+      image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      about: "2 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
+      years: "2023",
+      price: 100.0,
+      disc:"As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:",
+      regime: "Através do Curso de Acesso à UGS ou por Exame às disciplinas de: Português + Matemática.",
+      saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
+  ),
+  Course(
+    // idcurso: 3,
+      name: "Direito",
+      image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      about: "3 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
+      years: "2023",
+      price: 100.0,
+      disc:"As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:",
+      regime: "Através do Curso de Acesso à UGS ou por Exame às disciplinas de: Português + Matemática.",
+      saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
+  ),
+  Course(
+    // idcurso: 4,
+      name: "Engenharia Informática",
+      image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      about: "4 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
+      years: "2023",
+      price: 100.0,
+      disc:"As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:",
+      regime: "Através do Curso de Acesso à UGS ou por Exame às disciplinas de: Português + Matemática.",
+      saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
+  ),
+  Course(
+    //idcurso: 5,
+      name: "Engenharia Informática",
+      image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      about: "Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
+      years: "2023",
+      price: 100.0,
+      disc:"As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:",
+      regime: "Através do Curso de Acesso à UGS ou por Exame às disciplinas de: Português + Matemática.",
+      saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
+  ),
+  Course(
+    // idcurso: 6,
+      name: "Engenharia Informática",
+      image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      about: "Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
+      years: "2023",
+      price: 100.0,
+      disc:"As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:",
+      regime: "Através do Curso de Acesso à UGS ou por Exame às disciplinas de: Português + Matemática.",
+      saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
+  ),
+
+
 
 ];
 
