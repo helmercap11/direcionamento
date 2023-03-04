@@ -12,11 +12,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   void _homepage() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ));
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,7 +206,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget _button(String text, Color splashColor, Color highligthColor,
       Color fillColor, Color textColor, void function()) {
     return RaisedButton(
-      onPressed: () {},
+      onPressed: () {
+        function();
+      },
       highlightElevation: 0.0,
       splashColor: splashColor,
       elevation: 0.0,
