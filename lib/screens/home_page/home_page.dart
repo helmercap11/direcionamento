@@ -227,19 +227,20 @@ class SubjectForm extends StatelessWidget {
           final formBloc = BlocProvider.of<AllFilds>(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text('Orientação Profissional'),
+              title: Text('Direcionamento Profissional'),
+              backgroundColor: primary,
             ),
             floatingActionButton: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 FloatingActionButton.extended(
-                  heroTag: null,
+                  heroTag: null, foregroundColor: primary,
                   //onPressed: formBloc.submit,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>QuizHome()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>SchoolPage()));
                   },
-                  icon: Icon(Icons.save),
-                  label: Text('Guargar Dados'),
+                  icon: Icon(Icons.save, color: white,),
+                  label: Text('Guargar Dados',style: TextStyle(color: white),),
                 )
               ],
             ),

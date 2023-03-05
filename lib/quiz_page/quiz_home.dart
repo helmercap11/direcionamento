@@ -63,7 +63,7 @@ class QuizHome extends StatelessWidget {
             ],
           )
         ],
-      ),
+      ), backgroundColor: white70,
     );
   }
 
@@ -78,8 +78,8 @@ class QuizHome extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0)
       ),
-      color: Colors.grey.shade800,
-      textColor: white,
+      color: Colors.white,
+      textColor: black,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

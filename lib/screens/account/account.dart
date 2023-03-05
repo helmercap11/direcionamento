@@ -76,7 +76,7 @@ class _AccountPageState extends State<AccountPage> {
                   child: CustomSettingBox(title: "Pontuações" , icon: "assets/icons/work.svg"),
                 ),
                 SizedBox(width: 10,),
-                Expanded(child: CustomSettingBox(title: "55 horas",icon: "assets/icons/time.svg" ),),
+                Expanded(child: CustomSettingBox(title: "Activo",icon: "assets/icons/time.svg" ),),
                 SizedBox(width: 10,),
                 Expanded(child: CustomSettingBox(title: "4.8", icon: "assets/icons/star.svg"))
               ],
@@ -119,8 +119,8 @@ class _AccountPageState extends State<AccountPage> {
                 Padding(padding: const EdgeInsets.only(left: 45),
                   child: Divider(height: 0,color: Colors.grey.withOpacity(0.9),),
                 ),
-                CustomSettingItem(title: " BookMark",
-                  leadingIcon: "assets/icons/bookmark.svg",)
+                CustomSettingItem(title: " Nivel Academico",
+                  leadingIcon: "assets/icons/category/education.svg",)
               ],
             ),
           ),

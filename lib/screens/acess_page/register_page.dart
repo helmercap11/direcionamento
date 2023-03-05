@@ -282,7 +282,7 @@ class _RegisterPageState extends State<RegisterPage> {
               prefixIcon: Icon(Icons.lock),
             ),
           ),
-          RaisedButton(
+          /*RaisedButton(
             padding: EdgeInsets.all(0.0),
             onPressed: (){  Navigator.push(context,
                 MaterialPageRoute(builder: (context) => WellCome()));
@@ -297,7 +297,7 @@ class _RegisterPageState extends State<RegisterPage> {
             textColor: white,
             color: primary,
             child: Text("Open Dialog"),
-          ),
+          ),*/
         ],
       ),
     );

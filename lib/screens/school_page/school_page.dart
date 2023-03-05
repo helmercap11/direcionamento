@@ -112,15 +112,15 @@ class _SchoolPageState extends State<SchoolPage> {
                   fontSize: 24
               ),),
             ),
-            getFeature(),
+            getFeatureHigh(),
             SizedBox(height: 15,),
             Container(
               margin: EdgeInsets.fromLTRB(15, 0, 15, 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Cursos", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600,color: textColor),),
-                  Text("Todos os cursos", style: TextStyle(fontSize: 14, color: darker),)
+                  Text("Centros Profissionais", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600,color: textColor),),
+                  //Text("Todos os cursos", style: TextStyle(fontSize: 14, color: darker),)
                 ],
               ),
             ),
@@ -176,6 +176,29 @@ class _SchoolPageState extends State<SchoolPage> {
             name: item.name,
             image: item.image,
             location: item.location,
+        );
+
+      }),
+    );
+  }
+
+  getFeatureHigh(){
+    return CarouselSlider(
+      options: CarouselOptions(
+          height: 290,
+          enlargeCenterPage: true,
+          disableCenter: true,
+          viewportFraction: .75
+      ),
+      items: List.generate(higschool.length, (index){
+        final item = higschool[index];
+        return CustomSchoolItem(
+          onTap: (){
+            //Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(highSchool: item, university: null,)));
+          },
+          name: item.name,
+          image: item.image,
+          location: item.location,
         );
 
       }),
