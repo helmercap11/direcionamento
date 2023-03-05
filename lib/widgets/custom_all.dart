@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:direcionamento/screens/school_page/all_details.dart';
-import 'package:direcionamento/screens/utils/data.dart';
+
 import 'package:flutter/material.dart';
+
+import '../utils/data.dart';
 
 
 

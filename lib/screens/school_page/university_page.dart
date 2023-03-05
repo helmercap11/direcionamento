@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:direcionamento/model/university.dart';
 import 'package:direcionamento/screens/tabs/university/all_tab.dart';
 import 'package:direcionamento/screens/tabs/university/mestrado_tab.dart';
-import 'package:direcionamento/screens/utils/data.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 

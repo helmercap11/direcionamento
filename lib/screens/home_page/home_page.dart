@@ -1,15 +1,19 @@
 import 'dart:io';
 import 'package:direcionamento/model/FieldStudyModel.dart';
+import 'package:direcionamento/quiz_page/quiz_home.dart';
 import 'package:direcionamento/screens/field_Study_details/field_study_details.dart';
 import 'package:direcionamento/screens/root_app/root_app.dart';
 import 'package:direcionamento/screens/school_page/school_page.dart';
-import 'package:direcionamento/screens/utils/data.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+
+import '../../utils/data.dart';
 
 List<FieldStudyModel> fieldStudy = studyModel;
 
 List<FieldStudyModel> selectedFieldStudy = [];
+
 
 
 class HomePage extends StatefulWidget {
@@ -74,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                         child: RaisedButton(
                             onPressed: (){
                               Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => SchoolPage()));
+                                  MaterialPageRoute(builder: (context) => SubjectForm()));
                             },
                           color: Colors.blue[700],
                           child: Text(
@@ -121,6 +125,197 @@ class _HomePageState extends State<HomePage> {
             }
           });
       },
+    );
+  }
+}
+
+
+
+class AllFilds extends FormBloc<String, String>{
+  final text1 = TextFieldBloc();
+  final engenharia = SelectFieldBloc(
+      items: [
+        'Informática',
+        'Arquitetura',
+        'Construção Cívil',
+        'Eletronica de Telecomunicações',
+        'Petroleo'
+      ],
+      validators: [FieldBlocValidators.required]
+  );
+  final multiSelect1 = MultiSelectFieldBloc<String, dynamic>(
+      items: [
+        'Informática',
+        'Arquitetura',
+        'Construção Cívil',
+        'Eletronica de Telecomunicações',
+        'Petroleo',
+        'Mecatronica',
+        'Ambiente'
+      ]
+  );
+
+  final ciencia_exatas = MultiSelectFieldBloc<String, dynamic>(
+      items: [
+        'Física',
+        'Matemática'
+      ]
+  );
+
+  final ciencia_biologicas = MultiSelectFieldBloc<String, dynamic>(
+      items: [
+        'Anatomia Humana',
+        'Biofísica',
+        'Bioquímica',
+        'Biotecnologia',
+        'Citologia Animal e Vegetal',
+        ' Ecologia',
+        'Ecologia de Ecossistemas',
+        'Educação Ambiental',
+        'Evolução',
+        'Fisiologia Humana',
+        'Fisiologia Vegetal',
+        'Genética',
+        'Genética de Populações',
+        'Impacto Ambiental',
+        'Imunobiologia',
+        'Microbiologia',
+        'Paleontologia',
+        'Parasitologia Humana',
+        'Psicologia',
+        'Sistemas Circulatório',
+        'Sistemática Animal',
+        'Sistema Vegetal e de Microrganismos',
+        'Sociologia',
+        'Zoologia de Invertebrados',
+      ]
+  );
+
+  AllFilds(): super(autoValidate: false){
+    addFieldBlocs(fieldBlocs: [
+      text1,
+      multiSelect1,
+      engenharia,
+      ciencia_exatas,
+      ciencia_biologicas
+    ]);
+  }
+
+  @override
+  void onSubmitting() async {
+    try {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      emitSuccess(canSubmitAgain: true);
+    } catch (e) {
+      emitFailure();
+    }
+  }
+
+}
+
+
+
+class SubjectForm extends StatelessWidget {
+  const SubjectForm({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>AllFilds(),
+      child: Builder(
+        builder: (context) {
+          final formBloc = BlocProvider.of<AllFilds>(context);
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Orientação Profissional'),
+            ),
+            floatingActionButton: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FloatingActionButton.extended(
+                  heroTag: null,
+                  //onPressed: formBloc.submit,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>QuizHome()));
+                  },
+                  icon: Icon(Icons.save),
+                  label: Text('Guargar Dados'),
+                )
+              ],
+            ),
+            body: Theme(
+              data: Theme.of(context).copyWith(
+                  inputDecorationTheme: InputDecorationTheme(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)
+                      )
+                  )
+              ),
+              child: FormBlocListener<AllFilds, String, String>(
+                child: ScrollableFormBlocManager(
+                  formBloc: formBloc,
+                  child: SingleChildScrollView(
+                    physics: ClampingScrollPhysics(),
+                    padding: EdgeInsets.all(24.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Escolha o curso da respetiva área de conhecimento.",
+                          style: TextStyle(
+                              color: black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                        SizedBox(height: 20,),
+                        CheckboxGroupFieldBlocBuilder<String>(
+                          multiSelectFieldBloc: formBloc.ciencia_exatas,
+                          itemBuilder: (context, item) => FieldItem(
+                              child: Text(item)
+                          ),
+                          decoration: InputDecoration(
+                              labelText: ('Ciências Exatas'),
+                              prefixIcon: SizedBox(),
+                              labelStyle: TextStyle(fontSize: 20, color: black, fontWeight: FontWeight.w900)
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        CheckboxGroupFieldBlocBuilder<String>(
+                          multiSelectFieldBloc: formBloc.ciencia_biologicas,
+                          itemBuilder: (context, item) => FieldItem(
+                              child: Text(item)
+                          ),
+                          decoration: InputDecoration(
+                              labelText: 'Ciências Biológicas',
+                              prefixIcon: SizedBox(),
+                              labelStyle: TextStyle(fontSize: 20, color: black, fontWeight: FontWeight.w900)
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        CheckboxGroupFieldBlocBuilder<String>(
+                          multiSelectFieldBloc: formBloc.multiSelect1,
+                          itemBuilder: (context, item) => FieldItem(
+                            child: Text(
+                              item, style: TextStyle(color: black),
+
+                            ),
+                          ),
+                          decoration: const InputDecoration(
+                            labelStyle: TextStyle(fontSize: 25, color: black, fontWeight: FontWeight.bold,),
+                            labelText: 'Engenharia',
+                            prefixIcon: SizedBox(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

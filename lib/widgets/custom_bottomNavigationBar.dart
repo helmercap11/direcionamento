@@ -1,3 +1,4 @@
+import 'package:direcionamento/screens/school_page/school_page.dart';
 import 'package:direcionamento/screens/search_school/search_school.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -36,18 +37,21 @@ class CustomBootomNavigationBar extends StatelessWidget {
               showSelectedLabels: false,
               showUnselectedLabels: false,
               currentIndex: 2,
+              elevation: 0,
+              unselectedItemColor: black,
+              selectedItemColor: primary,
 
               // new
               items: [
                 new BottomNavigationBarItem(
                   icon: InkWell(
                     onTap: () {
-
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SchoolPage()));
                     },
                     child: Icon(
                       Icons.home,
                       size: 30,
-                      color: primary,
+                      //color: primary,
                     ),
                   ),
                   label: 'Home',
@@ -60,7 +64,7 @@ class CustomBootomNavigationBar extends StatelessWidget {
                     child: Icon(
                       Icons.search,
                       size: 30,
-                      color: primary,
+                      //color: primary,
                     ),
                   ),
                   label: 'Menu',
@@ -68,11 +72,11 @@ class CustomBootomNavigationBar extends StatelessWidget {
                 new BottomNavigationBarItem(
                   icon: Container(
                     child: CircleAvatar(
-                      backgroundColor: red,
+                      //backgroundColor: red,
                       child: Icon(
                         Icons.add,
                         size: 30,
-                        color: Colors.white,
+                        //color: Colors.white,
                       ),
                     ),
                   ),
@@ -89,7 +93,7 @@ class CustomBootomNavigationBar extends StatelessWidget {
                     child: Icon(
                       Icons.location_on,
                       size: 30,
-                      color: primary,
+                      //color: primary,
                     ),
                   ),
                  label: 'Noti',
@@ -98,7 +102,7 @@ class CustomBootomNavigationBar extends StatelessWidget {
                     icon: Icon(
                       Icons.person,
                       size: 30,
-                      color: primary,
+                      //color: primary,
                     ),
                     label: 'Account')
               ],

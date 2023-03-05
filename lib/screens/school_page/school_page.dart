@@ -2,13 +2,14 @@ import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:direcionamento/model/university.dart';
 import 'package:direcionamento/screens/school_page/university_page.dart';
-import 'package:direcionamento/screens/utils/data.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/custom_bottomNavigationBar.dart';
 import 'package:direcionamento/widgets/custom_categories.dart';
 import 'package:direcionamento/widgets/custom_notification.dart';
 import 'package:direcionamento/widgets/custom_school_item.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/data.dart';
 
 
 
@@ -28,6 +29,8 @@ class _SchoolPageState extends State<SchoolPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            //foregroundColor: black,
+            automaticallyImplyLeading: false,
             backgroundColor: appBarColor,
             pinned: true,
             floating: true,
@@ -40,7 +43,7 @@ class _SchoolPageState extends State<SchoolPage> {
           )
         ],
       ),
-      bottomNavigationBar: CustomBootomNavigationBar(),
+      //bottomNavigationBar: CustomBootomNavigationBar(),
     );
   }
 

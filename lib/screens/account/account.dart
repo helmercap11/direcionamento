@@ -1,10 +1,11 @@
 import 'dart:io';
-import 'package:direcionamento/screens/utils/data.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/Custom_settingbox.dart';
 import 'package:direcionamento/widgets/custom_image.dart';
 import 'package:direcionamento/widgets/custom_settingitem.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/data.dart';
 
 
 class AccountPage extends StatefulWidget {
@@ -30,8 +31,9 @@ class _AccountPageState extends State<AccountPage> {
         ),
         SliverToBoxAdapter(
           child: getBody(),
-        )
+        ),
       ],
+
     );
   }
 
@@ -182,6 +184,7 @@ class _AccountPageState extends State<AccountPage> {
           )
         ],
       ),
+
     );
   }
 }

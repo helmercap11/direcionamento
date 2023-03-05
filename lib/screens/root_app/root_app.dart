@@ -4,10 +4,11 @@ import 'package:direcionamento/screens/home_page/home_page.dart';
 import 'package:direcionamento/screens/school_page/school_page.dart';
 import 'package:direcionamento/screens/school_page/university_page.dart';
 import 'package:direcionamento/screens/search_school/search_school.dart';
-import 'package:direcionamento/screens/utils/constant.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/custom_bottombar.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/constant.dart';
 
 
 class RootApp extends StatefulWidget {
@@ -35,12 +36,12 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/chat.svg",
       "active_icon": "assets/icons/chat.svg",
-      "page": HomePage(),
+      "page": SchoolPage(),
     },
     {
       "icon": "assets/icons/location.svg",
       "active_icon": "assets/icons/location.svg",
-      "page": HomePage(),
+      "page": SearchSchool(),
     },
     {
       "icon": "assets/icons/profile.svg",
