@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:direcionamento/quiz_page/quiz_home.dart';
+import 'package:direcionamento/screens/root_app/root_app.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -20,6 +21,20 @@ class CheckAnswersPage  extends StatelessWidget {
         backgroundColor: primary,
         title: Text("Verificar Respostar"),
         elevation: 0,
+      ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton.extended(
+            heroTag: null, foregroundColor: primary,
+            //onPressed: formBloc.submit,
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>RootApp()));
+            },
+            icon: Icon(Icons.gpp_good, color: white,),
+            label: Text('Concluir',style: TextStyle(color: white, fontWeight: FontWeight.bold, fontSize: 16),),
+          )
+        ],
       ),
       body: Stack(
         children: [

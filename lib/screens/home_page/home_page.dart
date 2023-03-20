@@ -227,7 +227,7 @@ class SubjectForm extends StatelessWidget {
           final formBloc = BlocProvider.of<AllFilds>(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text('Direcionamento Profissional'),
+              title: Text('Orientação Profissional'),
               backgroundColor: primary,
             ),
             floatingActionButton: Column(
@@ -237,7 +237,7 @@ class SubjectForm extends StatelessWidget {
                   heroTag: null, foregroundColor: primary,
                   //onPressed: formBloc.submit,
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>SchoolPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>QuizHome()));
                   },
                   icon: Icon(Icons.save, color: white,),
                   label: Text('Guargar Dados',style: TextStyle(color: white),),

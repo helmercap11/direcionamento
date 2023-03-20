@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Image(image: new AssetImage('assets/images/icons_1.png')),
               Text(
-                "Direcionamento Profissional",
+                "Orientação Profissional",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20, color: primary, fontWeight: FontWeight.w900),

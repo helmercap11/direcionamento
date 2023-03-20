@@ -39,7 +39,7 @@ class _SplashPageState extends State<SplashPage> {
                     SizedBox(height: 30,),
                     Center(
                       child: Text(
-                        "Direcionamento Profissional", textAlign: TextAlign.center,
+                        "Orientação Profissional", textAlign: TextAlign.center,
                         style: TextStyle(color: primary, fontSize: 30, fontWeight: FontWeight.bold),
                       ) ,
                     )
