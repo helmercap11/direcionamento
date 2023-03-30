@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:direcionamento/model/FieldStudyModel.dart';
+import 'package:direcionamento/model/areaconhecimento_model.dart';
 import 'package:direcionamento/quiz_page/quiz_home.dart';
 import 'package:direcionamento/screens/field_Study_details/field_study_details.dart';
 import 'package:direcionamento/screens/root_app/root_app.dart';
@@ -10,9 +10,9 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../../utils/data.dart';
 
-List<FieldStudyModel> fieldStudy = studyModel;
+List<AreaConhecimentoModel> fieldStudy = studyModel;
 
-List<FieldStudyModel> selectedFieldStudy = [];
+List<AreaConhecimentoModel> selectedFieldStudy = [];
 
 
 
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
           setState((){
             studyModel[index].isSelected = !studyModel[index].isSelected;
             if(studyModel[index].isSelected == true) {
-              selectedFieldStudy.add(FieldStudyModel(name, true));
+              selectedFieldStudy.add(AreaConhecimentoModel(name, true));
             } else if(studyModel[index].isSelected == false){
               selectedFieldStudy
                 .removeWhere((element) => element.name == studyModel[index].name);

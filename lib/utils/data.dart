@@ -5,7 +5,7 @@ import 'package:direcionamento/model/university.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../model/FieldStudyModel.dart';
+import '../../model/areaconhecimento_model.dart';
 import '../model/Question.dart';
 
 var profile = {
@@ -14,15 +14,15 @@ var profile = {
   "email" : "helmer@gmail.com"
 };
 
-List<FieldStudyModel> studyModel =[
-  FieldStudyModel("Ciências Exatas", false),
-  FieldStudyModel("Ciências Biológicas", false),
-  FieldStudyModel("Ciências da Saúde", false),
-  FieldStudyModel("Ciências Agrárias", false),
-  FieldStudyModel("Ciências Humanas", false),
-  FieldStudyModel("Ciências Sociais Aplicadas", false),
-  FieldStudyModel("Engenharias", false),
-  FieldStudyModel("Linguística, Letras e Artes", false),
+List<AreaConhecimentoModel> studyModel =[
+  AreaConhecimentoModel("Ciências Exatas", false),
+  AreaConhecimentoModel("Ciências Biológicas", false),
+  AreaConhecimentoModel("Ciências da Saúde", false),
+  AreaConhecimentoModel("Ciências Agrárias", false),
+  AreaConhecimentoModel("Ciências Humanas", false),
+  AreaConhecimentoModel("Ciências Sociais Aplicadas", false),
+  AreaConhecimentoModel("Engenharias", false),
+  AreaConhecimentoModel("Linguística, Letras e Artes", false),
 ];
 
 
