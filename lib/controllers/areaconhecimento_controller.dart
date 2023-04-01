@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../model/areaconhecimento_model.dart';
 
 
-const String url = "http://127.0.0.1:5000/viewarea";
+const String url = "http://192.168.1.2:8000/viewarea";
 
 List<AreaConhecimentoModel> parseAreaConhecimento(String responseBody){
 var list = json.decode(responseBody) as List<dynamic>;

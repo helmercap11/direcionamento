@@ -14,7 +14,7 @@ var profile = {
   "email" : "helmer@gmail.com"
 };
 
-List<AreaConhecimentoModel> studyModel =[
+/*List<AreaConhecimentoModel> studyModel =[
   AreaConhecimentoModel("Ciências Exatas", false),
   AreaConhecimentoModel("Ciências Biológicas", false),
   AreaConhecimentoModel("Ciências da Saúde", false),
@@ -23,7 +23,7 @@ List<AreaConhecimentoModel> studyModel =[
   AreaConhecimentoModel("Ciências Sociais Aplicadas", false),
   AreaConhecimentoModel("Engenharias", false),
   AreaConhecimentoModel("Linguística, Letras e Artes", false),
-];
+];*/
 
 
 List<Categories> categorie = [

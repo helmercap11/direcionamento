@@ -1,6 +1,10 @@
 import 'dart:io';
+import 'package:direcionamento/controllers/areaconhecimento_controller.dart';
 import 'package:direcionamento/model/areaconhecimento_model.dart';
 import 'package:direcionamento/quiz_page/quiz_home.dart';
+import 'package:direcionamento/screens/components/list.dart';
+import 'package:direcionamento/screens/components/loading.dart';
+import 'package:direcionamento/screens/components/search.dart';
 import 'package:direcionamento/screens/field_Study_details/field_study_details.dart';
 import 'package:direcionamento/screens/root_app/root_app.dart';
 import 'package:direcionamento/screens/school_page/school_page.dart';
@@ -10,10 +14,9 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../../utils/data.dart';
 
-List<AreaConhecimentoModel> fieldStudy = studyModel;
+/*List<AreaConhecimentoModel> fieldStudy = studyModel;
 
 List<AreaConhecimentoModel> selectedFieldStudy = [];
-
 
 
 class HomePage extends StatefulWidget {
@@ -322,3 +325,67 @@ class SubjectForm extends StatelessWidget {
 }
 
 
+*/
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final List<AreaConhecimentoModel> _listAreaModel = <AreaConhecimentoModel>[];
+  List<AreaConhecimentoModel> _listAreaDisplay = <AreaConhecimentoModel>[];
+
+  bool _isLoading = true;
+
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAreas().then((value) {
+      setState((){
+        _isLoading = false;
+        _listAreaModel.addAll(value);
+        _listAreaDisplay = _listAreaModel;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Orientação Profissional"),
+      ),
+      body: SafeArea(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            if (!_isLoading) {
+              return index == 0
+                  ? SearchAreaConhecimento(
+                hintText: 'Pesquisar Área de Conhecimento.',
+                onChanged: (searchText) {
+                  searchText = searchText.toLowerCase();
+                  setState(() {
+                    _listAreaDisplay = _listAreaModel.where((u) {
+                      var nameLowerCase = u.name.toLowerCase();
+
+                      return nameLowerCase.contains(searchText);
+
+                    }).toList();
+                  });
+                },
+              )
+                  : AreaList(areaConhecimentoModel: _listAreaDisplay[index - 1]);
+            } else {
+              return const MyLoading();
+            }
+          },
+          itemCount: _listAreaDisplay.length +1,
+        ),
+      ),
+    );
+  }
+}
