@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:direcionamento/controllers/categoria_controller.dart';
 import 'package:direcionamento/model/university.dart';
+import 'package:direcionamento/screens/components/list_categoria.dart';
 import 'package:direcionamento/screens/school_page/university_page.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/custom_bottomNavigationBar.dart';
@@ -9,6 +11,7 @@ import 'package:direcionamento/widgets/custom_notification.dart';
 import 'package:direcionamento/widgets/custom_school_item.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/categories_model.dart';
 import '../../utils/data.dart';
 
 
@@ -22,6 +25,19 @@ class SchoolPage extends StatefulWidget {
 }
 
 class _SchoolPageState extends State<SchoolPage> {
+
+
+  Future<List<CategoriesModel>> ? futureCategoria;
+
+
+
+  @override
+  void initState() {
+    futureCategoria = fetchCategoria();
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,26 +150,49 @@ class _SchoolPageState extends State<SchoolPage> {
 
   int selectedColletion = 0;
   getCategories() {
-    return SingleChildScrollView(
+    return Container(
+      child:  FutureBuilder(
+        future: futureCategoria,
+        builder: (context, snapshot){
+          if(snapshot.hasData){
+            final categoria = snapshot.data as List<CategoriesModel>;
+            return ListCategoria(categoriamodel: categoria);
+          } else if(snapshot.hasError){
+            return Center(
+              child: Text(
+                snapshot.error.toString(),
+                style: TextStyle(
+                  fontSize: 16
+                ),
+              ),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
+   /* return SingleChildScrollView(
       padding: EdgeInsets.fromLTRB(15, 10, 0, 10),
       scrollDirection: Axis.horizontal,
       child: Row(
-          children: List.generate(categories.length, (index) =>
+          children: List.generate(_listCategoriaDisplay.length, (index) =>
               Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: CustomCategories(
                   selectedColor: Colors.white,
-                  data: categories[index],
+                  data: _listCategoriaDisplay[index],
                   onTap: () {
                     setState((){
                       selectedColletion = index;
                     });
-                  },
+                  }, categoriesModel: _listCategoriaDisplay[index -1],
                 ),
               )
           )
       ),
-    );
+    );*/
   }
 
 

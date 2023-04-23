@@ -1,4 +1,4 @@
-import 'package:direcionamento/model/Categories.dart';
+import 'package:direcionamento/model/categories_model.dart';
 import 'package:direcionamento/model/course.dart';
 import 'package:direcionamento/model/high_school.dart';
 import 'package:direcionamento/model/university.dart';
@@ -26,49 +26,33 @@ var profile = {
 ];*/
 
 
-List<Categories> categorie = [
-Categories(1, "Programação", icon: Icons.code),
-Categories(2, "Medicina", icon: Icons.local_hospital),
-Categories(3, "Construção", icon: Icons.engineering),
-Categories(3, "Desporto", icon: Icons.sports_baseball_rounded),
-Categories(5, "Gestão e Marketing", icon: Icons.manage_accounts),
-Categories(6, "Contablidade", icon: Icons.money),
-Categories(7, "Arte", icon: Icons.design_services),
-Categories(8, "Transporte", icon: Icons.car_crash),
-Categories(9, "Petroleo", icon: Icons.local_gas_station_outlined),
-Categories(10, "Ambiente", icon: Icons.airplane_ticket),
+List<CategoriesModel> categorie = [
+CategoriesModel(1, "Programação", icon: Icons.code),
+CategoriesModel(2, "Medicina", icon: Icons.local_hospital),
+CategoriesModel(3, "Construção", icon: Icons.engineering),
+CategoriesModel(3, "Desporto", icon: Icons.sports_baseball_rounded),
+CategoriesModel(5, "Gestão e Marketing", icon: Icons.manage_accounts),
+CategoriesModel(6, "Contablidade", icon: Icons.money),
+CategoriesModel(7, "Arte", icon: Icons.design_services),
+CategoriesModel(8, "Transporte", icon: Icons.car_crash),
+CategoriesModel(9, "Petroleo", icon: Icons.local_gas_station_outlined),
+CategoriesModel(10, "Ambiente", icon: Icons.airplane_ticket),
 ];
 
 
 List categories = [
   {
-    "name": "Todos",
+
     "icon": "assets/icons/category/all.svg"
   },
   {
-    "name": "Educação",
+
     "icon": "assets/icons/category/education.svg"
   },
   {
-    "name": "Programação",
     "icon": "assets/icons/category/coding.svg"
   },
-  {
-    "name": "Negócio",
-    "icon": "assets/icons/category/business.svg"
-  },
-  {
-    "name": "Finanças",
-    "icon": "assets/icons/category/finance.svg"
-  },
-  {
-    "name": "Arte",
-    "icon": "assets/icons/category/art.svg"
-  },
-  {
-    "name": "Gastronomia",
-    "icon": "assets/icons/category/cooking.svg"
-  },
+
 ];
 
 

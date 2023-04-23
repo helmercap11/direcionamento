@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:direcionamento/model/Categories.dart';
+import 'package:direcionamento/model/categories_model.dart';
 import 'package:direcionamento/quiz_page/quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/annotations.dart';
@@ -11,7 +11,7 @@ import '../utils/data.dart';
 
 class QuizOptionDialog extends StatefulWidget {
 
-  final Categories  ? categories;
+  final CategoriesModel  ? categories;
 
   const QuizOptionDialog({Key? key, this.categories}) : super(key: key);
 
@@ -42,7 +42,7 @@ class _QuizOptionDialogState extends State<QuizOptionDialog> {
             width: double.infinity,
             padding:const EdgeInsets.all(16.0),
             color: Colors.grey.shade200,
-            child: Text(widget.categories!.name,style:
+            child: Text(widget.categories!.name_categoria,style:
             Theme.of(context).textTheme.headline6?.copyWith(),),
           ),
           SizedBox(height: 10.0,),

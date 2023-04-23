@@ -4,6 +4,8 @@ import 'package:direcionamento/screens/home_page/home_page.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 
+import '../school_page/school_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -17,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => SchoolPage(),
         ));
   }
   @override

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:direcionamento/model/Categories.dart';
+import 'package:direcionamento/model/categories_model.dart';
 import 'package:direcionamento/quiz_page/quiz_finished.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ import '../model/Question.dart';
 class QuizPage extends StatefulWidget {
   static final String path = "lib/src/pages/quiz_app/quiz_page.dart";
   final List<Question> questions;
-  final Categories? categories;
+  final CategoriesModel? categories;
 
   const QuizPage({Key? key, required this.questions, this.categories})
       : super(key: key);
@@ -45,7 +45,7 @@ class _QuizPageState extends State<QuizPage> {
         key: _key,
         appBar: AppBar(
           backgroundColor: primary,
-          title: Text(widget.categories!.name),
+          title: Text(widget.categories!.name_categoria),
           elevation: 0,
         ),
         body: Stack(

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:direcionamento/model/Categories.dart';
+import 'package:direcionamento/model/categories_model.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/custom_quiz_dialog.dart';
 import 'package:flutter/foundation.dart';
@@ -68,7 +68,7 @@ class QuizHome extends StatelessWidget {
   }
 
   Widget _buidlCategoryItem(BuildContext context, int index) {
-    Categories categ = categorie [index];
+    CategoriesModel categ = categorie [index];
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 1.0,
@@ -85,14 +85,14 @@ class QuizHome extends StatelessWidget {
         children: [
           if(categ.icon != null) Icon(categ.icon),
           if(categ.icon != null) SizedBox(height: 5.0,),
-          Text(categ.name, textAlign: TextAlign.center,maxLines: 3,)
+          Text(categ.name_categoria, textAlign: TextAlign.center,maxLines: 3,)
         ],
       ),
     );
   }
 
 
-  _categoryPressed(BuildContext context, Categories categories) {
+  _categoryPressed(BuildContext context, CategoriesModel categories) {
     showBottomSheet(
         context: context,
         builder: (sheetContext)  => BottomSheet(

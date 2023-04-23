@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:direcionamento/model/categories_model.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,9 +8,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 class CustomCategories extends StatelessWidget {
-  const CustomCategories({this.data,  this.selectedColor = actionColor,  this.isSelected = false, this.onTap });
 
-  final data;
+  const CustomCategories({ required this.categoria, required this.icon,  this.selectedColor = actionColor,  this.isSelected = false, this.onTap });
+
+
+
+  final String categoria;
+  final String icon;
   final Color selectedColor;
   final bool isSelected;
   final GestureTapCallback? onTap;
@@ -36,10 +41,10 @@ class CustomCategories extends StatelessWidget {
                 ],
                 shape: BoxShape.circle
             ),
-            child: SvgPicture.asset(data["icon"], color: isSelected ? selectedColor : textColor, width: 30, height: 30,),
+            child: SvgPicture.asset("assets/icons/category/education.svg", color: isSelected ? selectedColor : textColor, width: 30, height: 30,),
           ),
           SizedBox(height: 10,),
-          Text(data["name"], maxLines: 1,overflow: TextOverflow.fade,
+          Text(categoria, maxLines: 1,overflow: TextOverflow.fade,
             style: TextStyle(color: textColor, fontWeight: FontWeight.w500),)
         ],
       ),
