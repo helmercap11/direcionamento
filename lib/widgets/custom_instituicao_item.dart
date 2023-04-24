@@ -3,10 +3,15 @@ import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
-class CustomSchoolItem extends StatelessWidget {
-  const CustomSchoolItem({Key? key, required this.name, required this.image,required this.location,  this.width = 280,  this.height = 290, this.onTap}) : super(key: key);
+class CustomInstituicaoItem extends StatelessWidget {
+  const CustomInstituicaoItem({Key? key, required this.name, required this.image,required this.location, required this.province, required this.tipo , this.width = 280,  this.height = 290, this.onTap}) : super(key: key);
   //final data;
-  final String name,location,image;
+
+  final String name;
+  final String location;
+  final String image;
+  final String province;
+  final String tipo;
   final double width;
   final double height;
   final GestureTapCallback? onTap;

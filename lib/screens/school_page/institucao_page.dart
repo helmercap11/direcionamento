@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:direcionamento/controllers/categoria_controller.dart';
+import 'package:direcionamento/controllers/instituicao_controller.dart';
 import 'package:direcionamento/model/university.dart';
 import 'package:direcionamento/screens/components/list_categoria.dart';
 import 'package:direcionamento/screens/school_page/university_page.dart';
@@ -8,32 +9,40 @@ import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/custom_bottomNavigationBar.dart';
 import 'package:direcionamento/widgets/custom_categories.dart';
 import 'package:direcionamento/widgets/custom_notification.dart';
-import 'package:direcionamento/widgets/custom_school_item.dart';
+import 'package:direcionamento/widgets/custom_instituicao_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/categories_model.dart';
+import '../../model/instituicao_model.dart';
 import '../../utils/data.dart';
+import '../components/list_instituicao.dart';
 
 
 
 
-class SchoolPage extends StatefulWidget {
-  const SchoolPage({Key? key}) : super(key: key);
+class InstituicaoPage extends StatefulWidget {
+
+  const InstituicaoPage({Key? key}) : super(key: key);
 
   @override
-  State<SchoolPage> createState() => _SchoolPageState();
+  State<InstituicaoPage> createState() => _InstituicaoPageState();
 }
 
-class _SchoolPageState extends State<SchoolPage> {
+class _InstituicaoPageState extends State<InstituicaoPage> {
+
 
 
   Future<List<CategoriesModel>> ? futureCategoria;
+  Future<List<InstituicaoModel>> ? futureInstituicao;
+
+
 
 
 
   @override
   void initState() {
     futureCategoria = fetchCategoria();
+    futureInstituicao = fetchInstituicao();
     super.initState();
 
   }
@@ -109,6 +118,7 @@ class _SchoolPageState extends State<SchoolPage> {
             SizedBox(
               height: 15,
             ),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 10, 15),
               child: Text(
@@ -199,48 +209,54 @@ class _SchoolPageState extends State<SchoolPage> {
 
 
   getFeature(){
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: 290,
-          enlargeCenterPage: true,
-          disableCenter: true,
-          viewportFraction: .75
+    return Container(
+      child: FutureBuilder(
+        future: futureInstituicao,
+        builder: (context, snapshot){
+          if(snapshot.hasData){
+            final instituicao = snapshot.data as List<InstituicaoModel>;
+            return ListInstituicao(instituicaoModel: instituicao);
+          } else if(snapshot.hasError) {
+            return Center(
+              child: Text(
+                snapshot.error.toString(),
+                style: TextStyle(
+                    fontSize: 16
+                ),
+              ),
+            );
+          }
+          return const Center(
+            child:  CircularProgressIndicator(),
+          );
+        },
       ),
-      items: List.generate(universty.length, (index){
-        final item = universty[index];
-        return CustomSchoolItem(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(university: item,)));
-          },
-            name: item.name,
-            image: item.image,
-            location: item.location,
-        );
-
-      }),
     );
   }
 
   getFeatureHigh(){
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: 290,
-          enlargeCenterPage: true,
-          disableCenter: true,
-          viewportFraction: .75
+    return Container(
+      child: FutureBuilder(
+        future: futureInstituicao,
+        builder: (context, snapshot){
+          if(snapshot.hasData){
+            final instituicao = snapshot.data as List<InstituicaoModel>;
+            return ListInstituicao(instituicaoModel: instituicao);
+          } else if(snapshot.hasError) {
+            return Center(
+              child: Text(
+                snapshot.error.toString(),
+                style: TextStyle(
+                    fontSize: 16
+                ),
+              ),
+            );
+          }
+          return const Center(
+            child:  CircularProgressIndicator(),
+          );
+        },
       ),
-      items: List.generate(higschool.length, (index){
-        final item = higschool[index];
-        return CustomSchoolItem(
-          onTap: (){
-            //Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(highSchool: item, university: null,)));
-          },
-          name: item.name,
-          image: item.image,
-          location: item.location,
-        );
-
-      }),
     );
   }
 }

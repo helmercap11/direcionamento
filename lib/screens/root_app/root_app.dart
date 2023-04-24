@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:direcionamento/screens/account/account.dart';
 import 'package:direcionamento/screens/home_page/home_page.dart';
-import 'package:direcionamento/screens/school_page/school_page.dart';
+import 'package:direcionamento/screens/school_page/institucao_page.dart';
 import 'package:direcionamento/screens/school_page/university_page.dart';
 import 'package:direcionamento/screens/search_school/search_school.dart';
 import 'package:direcionamento/theme/global_color.dart';
@@ -25,7 +25,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/home.svg",
       "active_icon": "assets/icons/home.svg",
-      "page": SchoolPage(),
+      "page": InstituicaoPage(),
     },
     {
       "icon": "assets/icons/search.svg",
@@ -36,7 +36,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/chat.svg",
       "active_icon": "assets/icons/chat.svg",
-      "page": SchoolPage(),
+      "page": InstituicaoPage(),
     },
     {
       "icon": "assets/icons/location.svg",

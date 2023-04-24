@@ -1,6 +1,6 @@
 import 'package:direcionamento/model/categories_model.dart';
 import 'package:direcionamento/model/course.dart';
-import 'package:direcionamento/model/high_school.dart';
+import 'package:direcionamento/model/instituicao_model.dart';
 import 'package:direcionamento/model/university.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -86,33 +86,33 @@ List<University> universty =[
 
 
 
-List<HighSchool> higschool =[
-  HighSchool(
+/*List<InstituicaoModel> higschool =[
+  InstituicaoModel(
       id: 1,
       name: "ITEL",
       image: "https://itel.gov.ao/edu/assets/img/core-img/logo.png",
       location: "Luanda"
   ),
-  HighSchool(
+  InstituicaoModel(
       id: 2,
       name: "Makarengo",
        image: "https://scontent.flad7-1.fna.fbcdn.net/v/t1.6435-9/93111677_2784154918347411_516106016434159616_n.png?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-1Cacjd0sdgAX910iF5&_nc_ht=scontent.flad7-1.fna&oh=00_AfCCOeY596jwyIJtA7mWW_DtElyvlkAXVdF5kAqnVBTlAA&oe=642C7762",
        location: "Luanda"
   ),
-  HighSchool(
+  InstituicaoModel(
       id: 3,
       name: "Simione Mucune",
      image: "https://images.unsplash.com/photo-1604134967494-8a9ed3adea0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8c2Nob29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
      location: "Luanda"
   ),
-  HighSchool(
+  InstituicaoModel(
       id: 4,
       name: "IMEL",
      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8FhAJgybMkGY93BNfc4SfF01ffrOkFlajTg&usqp=CAU",
       location: "Luanda"
   ),
 
-];
+];*/
 
 
 List <Course> courses = [

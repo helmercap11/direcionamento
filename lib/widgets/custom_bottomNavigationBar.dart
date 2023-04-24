@@ -1,4 +1,4 @@
-import 'package:direcionamento/screens/school_page/school_page.dart';
+import 'package:direcionamento/screens/school_page/institucao_page.dart';
 import 'package:direcionamento/screens/search_school/search_school.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class CustomBootomNavigationBar extends StatelessWidget {
                 new BottomNavigationBarItem(
                   icon: InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SchoolPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> InstituicaoPage()));
                     },
                     child: Icon(
                       Icons.home,
