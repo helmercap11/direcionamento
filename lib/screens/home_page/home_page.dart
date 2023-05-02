@@ -335,6 +335,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  AreaConhecimentoController areaConhecimentoController = AreaConhecimentoController();
   final List<AreaConhecimentoModel> _listAreaModel = <AreaConhecimentoModel>[];
   List<AreaConhecimentoModel> _listAreaDisplay = <AreaConhecimentoModel>[];
 
@@ -344,7 +346,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    fetchAreas().then((value) {
+    areaConhecimentoController.fetchAreas().then((value) {
       setState((){
         _isLoading = false;
         _listAreaModel.addAll(value);

@@ -3,7 +3,7 @@ import 'package:direcionamento/model/instituicao_model.dart';
 import 'package:http/http.dart' as http;
 
 
-const String url = "http://192.168.128.2:8000/api/instituicao/read";
+const String url = "http://192.168.128.2:3000/api/instituicao/read";
 
 
 Future<List<InstituicaoModel>> fetchInstituicao() async {

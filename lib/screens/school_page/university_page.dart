@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:direcionamento/model/instituicao_model.dart';
 import 'package:direcionamento/model/university.dart';
 import 'package:direcionamento/screens/tabs/university/all_tab.dart';
 import 'package:direcionamento/screens/tabs/university/mestrado_tab.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 
 
 class UniversityPage extends StatelessWidget {
-  final University university;
-  const UniversityPage({Key? key,required this.university}) : super(key: key);
+  //final University university;
+  final InstituicaoModel instituicaoModel;
+  const UniversityPage({Key? key, required this.instituicaoModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class UniversityPage extends StatelessWidget {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(university.name,
+                Text(instituicaoModel.name,
                   style: TextStyle(color: Colors.black,fontSize: 16.0,fontWeight: FontWeight.w600),
                 ),
               ],

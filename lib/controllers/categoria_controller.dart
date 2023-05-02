@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 
 
-const String url = "http://192.168.128.2:8000/api/categoria/read";
+const String url = "http://192.168.128.2:3000/api/categoria/read";
 
 Future<List<CategoriesModel>> fetchCategoria() async{
   final response = await http.get(Uri.parse(url));

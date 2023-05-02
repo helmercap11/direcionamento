@@ -1,10 +1,21 @@
+import 'package:direcionamento/controllers/areaconhecimento_controller.dart';
+import 'package:direcionamento/controllers/user_controller.dart';
+import 'package:direcionamento/model/user_model.dart';
+import 'package:direcionamento/provider/nivel_academico_provider.dart';
+import 'package:direcionamento/provider/user_provider.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 //import 'package:orientacao/screens/widgets/custom_dialog_sucess.dart';
 
+import '../../model/nivel_academico_model.dart';
 import '../home_page/home_page.dart';
 
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 
 
 class RegisterUser extends StatelessWidget {
@@ -15,11 +26,14 @@ class RegisterUser extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: RegisterPage(),
+
     );
   }
 }
 
 class RegisterFormBloc extends FormBloc<String, String> {
+
+
   final username = TextFieldBloc(
     validators: [FieldBlocValidators.required],
   );
@@ -43,7 +57,7 @@ class RegisterFormBloc extends FormBloc<String, String> {
   final lastName = TextFieldBloc();
 
   final gender = SelectFieldBloc(
-    items: ['Masculino', 'Femenino'],
+    items: ["1", "1"],
   );
 
   final birthDate = InputFieldBloc<DateTime?, Object>(
@@ -108,8 +122,19 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  final UserController userController =UserController();
+
+  final _addFormKey = GlobalKey<FormState>();
+
+  NivelAcademicoProvider nivelAcademicoProvider =  NivelAcademicoProvider();
+  UserProvider userProvider = UserProvider();
+
+
+
   var _type = StepperType.horizontal;
 
+ RegisterFormBloc regbloc = RegisterFormBloc();
 
 
   void _toggleType() {
@@ -121,15 +146,24 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     });
   }
-  List<DropdownMenuItem<String>> get dropdownItems{
-    List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("Técnico Médio"),value: "Técnico Médio"),
-      DropdownMenuItem(child: Text("Licenciado"),value: "Licenciado"),
-      DropdownMenuItem(child: Text("Mestre"),value: "Mestre"),
-      DropdownMenuItem(child: Text("Outros"),value: "Outros"),
-    ];
-    return menuItems;
+
+
+
+  List<DropdownMenuItem<String>> _dropDownItems(List<NivelAcademicoModel> categories) {
+    List<DropdownMenuItem<String>> list = [];
+
+    categories.forEach((category) {
+      list.add(
+          DropdownMenuItem(child: Text(category.descricao), value: category.id));
+    });
+
+    return list;
   }
+  void refresh() {
+    setState(() {});
+  }
+
+
 
   List<DropdownMenuItem<String>> get dropdownCountrs{
     List<DropdownMenuItem<String>> menuItems = [
@@ -143,10 +177,27 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   String selectedValue = "Técnico Médio";
+
   String selectedValueCountry = "Angola";
+
+
+
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      userController.idnivelacademico = '1';
+      userController.init(context, refresh);
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider( key: _addFormKey,
       create: (context) => RegisterFormBloc(),
       child: Builder(
         builder: (context) {
@@ -159,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderRadius: BorderRadius.circular(20)
                       )
                   )
-              ),
+              ), //key: _addFormKey,
               child: Container(
                 child:FormBlocListener<RegisterFormBloc, String, String>(
                   onSubmitting: (context, state) => LoadingDialog.show(context),
@@ -168,8 +219,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     LoadingDialog.hide(context);
 
                     if (state.stepCompleted == state.lastStep) {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => const DialogInitial()));
+                      //userProvider.createUser(,regbloc.username.toString(), regbloc.email.toString(), regbloc.password.toString(), userController.idnivelacademico);
+                      /*Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => const DialogInitial()));*/
+                      //userProvider.create(UserModel( name: regbloc.username.toString(), email: regbloc.email.toString(), password: regbloc.password.toString(), idnivelacademico: 1));
+                      userController.createUser();
+                      /*Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => const DialogInitial()));*/
                     }
                   },
                   onFailure: (context, state) {
@@ -373,35 +429,34 @@ class _RegisterPageState extends State<RegisterPage> {
             items: dropdownCountrs,
             onChanged: (String){},
           ),SizedBox(height: 20,),
-          DropdownButtonFormField(
-            decoration: InputDecoration(
-                labelText: 'Nível Academico',
-                prefixIcon: Icon(Icons.school)
-            ),
-            validator: (value) => value == null ? "Selecione o Nível Academico" : null,
-            value:  selectedValue,
-
-            items: dropdownItems,
-            onChanged: (String ? newValue){},
-          ),
-          /*TextFieldBlocBuilder(
-            textFieldBloc: wizardFormBloc.nacionality,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Twitter',
-              prefixIcon: Icon(Icons.sentiment_satisfied),
-            ),
-          ),
-          TextFieldBlocBuilder(
-            textFieldBloc: wizardFormBloc.academic,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              labelText: 'Facebook',
-              prefixIcon: Icon(Icons.sentiment_satisfied),
-            ),
-          ),*/
+          _dropDownCategories(userController.nivel)
         ],
       ),
+    );
+  }
+// adicionar aqui
+  Widget _dropDownCategories(List<NivelAcademicoModel> nivel) {
+   //userController.idnivelacademico;
+    return Container(
+        child: Column(
+          children: [
+            DropdownButtonFormField(
+              decoration: InputDecoration(
+                  hintText:  'Nível Academico' ,
+                  prefixIcon: Icon(Icons.school)
+              ),
+
+              items: _dropDownItems(nivel),
+              value:  userController.idnivelacademico='1',
+              onChanged: (String ? newValue){
+                setState(() {
+                  userController.idnivelacademico = newValue!;
+
+                });
+              },
+            ),
+          ],
+        )
     );
   }
 }
@@ -434,6 +489,8 @@ class LoadingDialog extends StatelessWidget {
       ),
     );
   }
+
+
 }
 
 class SuccessScreen extends StatelessWidget {
@@ -455,7 +512,9 @@ class SuccessScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ElevatedButton.icon(
-              onPressed: (){}, /*=> Navigator.of(context).pushReplacement(
+              onPressed: (){
+
+              }, /*=> Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (_) => CustomSucessDialog(
                       title: "Sucesso",
                       buttonText: "Finalizar"))),*/
@@ -596,4 +655,7 @@ class _WellComeState extends State<WellCome> {
     );
   }
 }
+
+
+
 

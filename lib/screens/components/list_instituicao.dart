@@ -23,7 +23,7 @@ class ListInstituicao extends StatelessWidget {
           final item = instituicaoModel[index];
           return CustomInstituicaoItem(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(university: item,)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(instituicaoModel: instituicaoModel.last,)));
             },
               name: item.name.toString(),
               image: item.image.toString(),

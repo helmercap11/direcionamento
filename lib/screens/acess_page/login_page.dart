@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:direcionamento/screens/acess_page/register_page.dart';
+import 'package:direcionamento/screens/acess_page/resgister.dart';
 import 'package:direcionamento/screens/home_page/home_page.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -149,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              RegisterPage()));
+                                              RegisterUser()));
                                 },
                                 child: Text(
                                   "Criar Conta",

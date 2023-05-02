@@ -1,7 +1,9 @@
 import 'package:direcionamento/screens/splash_page/splash_page.dart';
 import 'package:flutter/material.dart';
 
+
 void main() {
+
   runApp(const MyApp());
 }
 
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
       ),
       home: SplashPage(),
+
     );
   }
 }
+
