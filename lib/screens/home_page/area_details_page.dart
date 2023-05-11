@@ -27,7 +27,8 @@ class AreaDetailsPage extends StatelessWidget {
                 fontWeight: FontWeight.w700
               ),
               textAlign: TextAlign.left,
-            )
+            ),
+            Text(areaConhecimentoModel.idareaconhecimento)
           ],
         ),
       ),

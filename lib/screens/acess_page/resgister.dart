@@ -1,6 +1,7 @@
 import 'package:direcionamento/controllers/user_controller.dart';
 import 'package:direcionamento/model/nivel_academico_model.dart';
 import 'package:direcionamento/model/user_model.dart';
+import 'package:direcionamento/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -36,7 +37,7 @@ class _RegisterCreState extends State<RegisterCre> {
 
 
 
-
+ UserProvider provider = UserProvider();
 
   UserController userController = UserController();
 
@@ -44,7 +45,7 @@ class _RegisterCreState extends State<RegisterCre> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      userController.idnivelacademico = '1';
+      userController.idnivelacademico;
       userController.init(context, refresh);
     });
   }
@@ -73,31 +74,31 @@ class _RegisterCreState extends State<RegisterCre> {
                         TextFormField(
                           controller: _nameController,
                           //initialValue:  widget.name,
-                          decoration: const InputDecoration(hintText: 'Enter Title'),
-                          onChanged: (newValue) => _nameController.text,
+                          decoration: const InputDecoration(hintText: 'nome'),
+
                         ),
 
                         TextFormField(
                           controller: _emailController,
-                          decoration: const InputDecoration(hintText: 'Enter Title'),
-                          onChanged: (newValue) => _emailController.text,
+                          decoration: const InputDecoration(hintText: 'email'),
+
                         ),
                         TextFormField(
                           controller: _senhaController,
-                          decoration: const InputDecoration(hintText: 'Enter Title'),
+                          decoration: const InputDecoration(hintText: 'ssenha'),
                           onChanged: (newValue) => _senhaController.text,
                         ),
                         TextFormField(
                           controller: _idnivelController,
-                          decoration: const InputDecoration(hintText: 'Enter Title'),
-                          onChanged: (newValue) => _idnivelController.text,
+                          decoration: const InputDecoration(hintText: 'id'),
+
                         ),
-                        _dropDownCategories(userController.nivel),
+                       // _dropDownCategories(userController.nivel),
                         ElevatedButton(
                           onPressed: () {
                             setState(() {
                              // api.createUser(_nameController.text, _emailController.text, _senhaController.text, _idnivelController.text);
-
+                              provider.createUser(_nameController.text, _emailController.text, _senhaController.text, "1a10fc62-0629-46e1-b9db-0e7c2d04ecf3");
                             });
                           },
                           child: const Text('Create Data'),

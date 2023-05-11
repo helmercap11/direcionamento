@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import '../../model/categories_model.dart';
 import '../../model/instituicao_model.dart';
 import '../../utils/data.dart';
+import '../../widgets/bottomNavigationBar.dart';
 import '../components/list_instituicao.dart';
 
 
@@ -34,9 +35,6 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
 
   Future<List<CategoriesModel>> ? futureCategoria;
   Future<List<InstituicaoModel>> ? futureInstituicao;
-
-
-
 
 
   @override
@@ -69,6 +67,7 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
         ],
       ),
       //bottomNavigationBar: CustomBootomNavigationBar(),
+      bottomNavigationBar: BootomNavigationBar(),
     );
   }
 
@@ -213,10 +212,12 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
       child: FutureBuilder(
         future: futureInstituicao,
         builder: (context, snapshot){
+
           if(snapshot.hasData){
             final instituicao = snapshot.data as List<InstituicaoModel>;
             return ListInstituicao(instituicaoModel: instituicao);
           } else if(snapshot.hasError) {
+
             return Center(
               child: Text(
                 snapshot.error.toString(),

@@ -1,5 +1,5 @@
 class CategoriesModel {
-   int id = 0;
+   String id = "";
    String name_categoria = "";
    dynamic icon = "";
 

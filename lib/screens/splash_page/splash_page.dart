@@ -3,6 +3,9 @@ import 'package:direcionamento/screens/acess_page/login_page.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../school_page/institucao_page.dart';
 
 
 class SplashPage extends StatefulWidget {
@@ -20,6 +23,16 @@ class _SplashPageState extends State<SplashPage> {
  Future.delayed(Duration(seconds: 4)).then((_) {
    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage() ));
  });
+   /* verificarToken().then((value) {
+   if(value){
+     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+     Future.delayed(Duration(seconds: 4)).then((_) {
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => InstituicaoPage() ));
+     });
+   }else {
+   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage() ));
+   }
+ });*/
   }
 
   @override
@@ -52,5 +65,14 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
+
+  Future<bool> verificarToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getString('token') !=null){
+      return true;
+    }else {
+      return false;
+    }
+  }
 
 }

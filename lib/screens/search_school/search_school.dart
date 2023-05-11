@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:direcionamento/theme/global_color.dart';
+import 'package:direcionamento/widgets/bottomNavigationBar.dart';
 import 'package:direcionamento/widgets/custom_bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 
@@ -204,6 +205,7 @@ class _SearchSchoolState extends State<SearchSchool> {
           ),
         ),
       ),
+      bottomNavigationBar: BootomNavigationBar(),
     );
   }
 }

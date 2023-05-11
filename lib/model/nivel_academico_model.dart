@@ -11,7 +11,7 @@ class NivelAcademicoModel {
   NivelAcademicoModel({required this.id, required this.descricao});
 
   factory NivelAcademicoModel.fromJson(Map<String, dynamic> json)=> NivelAcademicoModel(
-      id: json["idnivelacademico"] is int ? json["idnivelacademico"].toString(): json["idnivelacademico"],
+      id: json["idnivelacademico"],
       descricao: json["descricao"]
   );
 
@@ -26,7 +26,7 @@ class NivelAcademicoModel {
   }
 
   Map<String, dynamic> toJson() => {
-    "id": id,
+    "idnivelacademico": id,
     "descricao": descricao,
   };
 

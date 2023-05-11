@@ -359,11 +359,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primary,
         title: const Text("Orientação Profissional"),
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {
+
             if (!_isLoading) {
               return index == 0
                   ? SearchAreaConhecimento(

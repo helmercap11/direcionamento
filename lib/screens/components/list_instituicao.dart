@@ -22,15 +22,16 @@ class ListInstituicao extends StatelessWidget {
         items: List.generate(instituicaoModel.length, (index) {
           final item = instituicaoModel[index];
           return CustomInstituicaoItem(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(instituicaoModel: instituicaoModel.last,)));
-            },
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>UniversityPage(instituicaoModel: instituicaoModel[index],)));
+              },
               name: item.name.toString(),
               image: item.image.toString(),
               location: item.location.toString(),
               province: item.provincia.toString(),
               tipo: item.tipo.toString()
           );
+
         }),
 
     );

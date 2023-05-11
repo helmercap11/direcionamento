@@ -1,8 +1,11 @@
+import 'dart:collection';
+
 import 'package:direcionamento/controllers/areaconhecimento_controller.dart';
 import 'package:direcionamento/controllers/user_controller.dart';
 import 'package:direcionamento/model/user_model.dart';
 import 'package:direcionamento/provider/nivel_academico_provider.dart';
 import 'package:direcionamento/provider/user_provider.dart';
+import 'package:direcionamento/screens/acess_page/confirm_user_page.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -17,7 +20,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-
 class RegisterUser extends StatelessWidget {
   const RegisterUser({Key? key}) : super(key: key);
 
@@ -26,16 +28,675 @@ class RegisterUser extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: RegisterPage(),
-
     );
   }
 }
 
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+
+  final UserProvider userProvider = UserProvider();
+ final UserController userController = UserController();
+ final _addFormkey = GlobalKey<FormState>();
+ final TextEditingController _controllername = TextEditingController();
+ final TextEditingController _controlleremail = TextEditingController();
+ final TextEditingController _controllersenha = TextEditingController();
+ final TextEditingController _controller = TextEditingController();
+
+ NivelAcademicoProvider _academicoProvider = NivelAcademicoProvider();
+
+ List<DropdownMenuItem<String>> _dropDownItems(List<NivelAcademicoModel> categories) {
+   List<DropdownMenuItem<String>> list = [];
+
+   categories.forEach((category) {
+     list.add(
+         DropdownMenuItem(child: Text(category.descricao), value: category.id));
+   });
+
+   return list;
+ }
+ void refresh() {
+   setState(() {});
+ }
+
+
+ int _currentStep = 0;
+
+  _stepState(int step) {
+    if (_currentStep > step) {
+      return StepState.complete;
+    } else {
+      return StepState.editing;
+    }
+  }
+
+  _steps() => [
+        Step(
+          title: const Text('Conta'),
+          content:  _Account(),
+          state: _stepState(0),
+          isActive: _currentStep == 0,
+        ),
+        Step(
+          title: const Text('Dados Pessoais'),
+          content: _DataAccount(),
+          state: _stepState(1),
+          isActive: _currentStep == 1,
+        ),
+        Step(
+          title: const Text('Finalizar'),
+          content: _FinnalyAccount(),
+          state: _stepState(2),
+        )
+      ];
+
+
+
+  void _save() async {
+
+    try {
+      final user = await userProvider.createUser(_controllername.text, _controlleremail.text, _controllersenha.text, userController.idnivelacademico.toString());
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmatioAcount()));
+      if (user != null) {
+        var customerInfo = userController;
+        await customerInfo.emailcontroller == _controlleremail.text;
+        print("erro");
+        /*.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CustomerScreen(
+                    customerInfo: customerInfo)))*/
+
+      } else {
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Aviso!"),
+              content: Text("Email or Password is wrong!"),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {Navigator.of(context).pop();},
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Aviso!"),
+            content: Text("Aviso! Já existe um email cadastrado com esse nome"),
+            actions: [
+              ElevatedButton(
+                onPressed: () {Navigator.of(context).pop();},
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+    /*userProvider.createUser(_controllername.text, _controlleremail.text, _controllersenha.text, userController.idnivelacademico.toString()).catchError((e) {
+      showDialog(
+          context: context,
+          builder: (contextDialog) {
+            return AlertDialog(
+              title: const Text('Basic dialog title'),
+              content: const Text('Falha'),
+              /*actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  child: const Text('Disable'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  child: const Text('Enable'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],*/
+            );;
+          });
+
+    }, test: (e) => e is Exception);
+
+    if (userProvider != null) {
+      await showDialog(
+          context: context,
+          builder: (contextDialog) {
+            return AlertDialog(
+              title: const Text('sucesso'),
+              content: const Text('sucesso'),
+              /*actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  child: const Text('Disable'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  child: const Text('Enable'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],*/
+            );
+          });
+      Navigator.pop(context);
+    }*/
+  }
+
+
+
+ @override
+  void initState() {
+   super.initState();
+   SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+     userController.idnivelacademico;
+     userController.init(context, refresh);
+   });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Theme(
+        data: Theme.of(context).copyWith(
+            inputDecorationTheme: InputDecorationTheme(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20)
+                )
+            )
+        ), //key: _addFormKey,
+        child: Container(
+            child: Container(
+              child: Stack(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          primary,
+                          primary
+                        ])
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Container(
+                            margin: EdgeInsets.only(top: 25,right: 330),
+                            child: Column(
+                              children: [
+                                IconButton(onPressed: () =>Navigator.of(context).pop() ,
+                                  icon: Icon(Icons.arrow_back,color: white,size: 30,),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+
+                      padding: EdgeInsets.only(top: 100),
+
+                      child: Container(
+                        child:  ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(85.0),
+                          ),
+
+                          child: Container(
+                            child: Stepper(
+                              type: StepperType.horizontal,
+                              controlsBuilder: (BuildContext context, ControlsDetails controls) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      _currentStep == 2 // this is the last step
+                                          ?
+                                      ElevatedButton(
+
+                                        onPressed: () async{
+                                          _save();
+                                          },
+                                        child: Text('SALVAR'),
+                                      )
+                                          : ElevatedButton(
+                                        onPressed: controls.onStepContinue,
+                                        child: Text('CONTINUE'),
+                                      ),
+                                      if (_currentStep != 0)
+                                        TextButton(
+                                          onPressed: controls.onStepCancel,
+                                          child: const Text(
+                                            'BACK',
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                        ),
+                                    ],
+                                    /*children: <Widget>[
+                                      ElevatedButton(
+                                        onPressed: controls.onStepContinue,
+                                        child:  Text('CONTINUE'),
+                                      ),
+                                      if (_currentStep != 0)
+                                        TextButton(
+                                          onPressed: controls.onStepCancel,
+                                          child: const Text(
+                                            'BACK',
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                        ),
+                                    ],*/
+                                  ),
+                                );
+                              },
+                             // onStepTapped: (step) => setState(() => _currentStep = step),
+                                onStepTapped:(step){
+                                  if(step>_currentStep){
+                                    setState((){
+                                      _currentStep=step;
+                                    });
+                                  }
+                                },
+                              onStepContinue: () {
+                                setState(() {
+                                  if (_currentStep < _steps().length - 1) {
+                                    _currentStep += 1;
+                                      } else {
+                                    _currentStep = 0;
+                                  }
+                                });
+
+                              },
+                              onStepCancel: () {
+                                setState(() {
+                                  if (_currentStep > 0) {
+                                    _currentStep -= 1;
+                                  } else {
+                                    _currentStep = 0;
+                                  }
+                                });
+                              },
+                              currentStep: _currentStep,
+                              steps: _steps(),
+                            ),
+                            height: MediaQuery.of(context).size.height/1.1,
+                            width: MediaQuery.of(context).size.width,
+                            color: white,
+                          ),
+                        ),
+                      )
+                  )
+                ],
+              ),
+            ),
+
+        ),
+      ),
+    );
+
+  }
+
+  Widget _Account() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: _controllername,
+          decoration: const InputDecoration(
+            labelText: 'Primerio Nome',
+            prefixIcon: Icon(Icons.person),
+          ),
+
+        ),
+        SizedBox(height: 20),
+        TextFormField(
+          controller: _controller,
+          decoration: const InputDecoration(
+            labelText: 'Ultimo nome',
+            prefixIcon: Icon(Icons.person),
+          ),
+
+        ),
+        SizedBox(height: 20),
+        TextFormField(
+          controller: _controlleremail,
+          decoration: const InputDecoration(
+            labelText: 'Email',
+            prefixIcon: Icon(Icons.email),
+          ),
+        ),
+        SizedBox(height: 20),
+        TextFormField(
+          controller:  _controllersenha,
+          decoration: const InputDecoration(
+            labelText: 'Senha',
+            prefixIcon: Icon(Icons.lock),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> ConfirmUser()));
+          },
+          child: Text('Teste'),
+        ),
+      ],
+    );
+}
+
+Widget _DataAccount(){
+  var gender;
+  return Column(
+    children: [
+      Column(
+        children: [
+
+          Text("Genero", style: TextStyle(
+              fontSize: 18
+          ),),
+
+          Divider(),
+
+          RadioListTile(
+            title: Text("Male"),
+            value: "male",
+            groupValue: gender,
+            onChanged: (value){
+
+            },
+          ),
+
+          RadioListTile(
+            title: Text("Female"),
+            value: "female",
+            groupValue: gender,
+            onChanged: (value){
+
+            },
+          ),
+
+
+        ],
+      ),
+      SizedBox(height: 20),
+      TextField(
+        decoration: InputDecoration(
+            icon: Icon(Icons.calendar_today), //icon of text field
+            labelText: "Enter Date" //label text of field
+        ),
+        readOnly: true,  //set it true, so that user will not able to edit text
+        onTap: () async {
+          DateTime? pickedDate = await showDatePicker(
+              context: context, initialDate: DateTime.now(),
+              firstDate: DateTime(2000), //DateTime.now() - not to allow to choose before today.
+              lastDate: DateTime(2101)
+          );
+
+          if(pickedDate != null ){
+            print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+            String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+            print(formattedDate); //formatted date output using intl package =>  2021-03-16
+            //you can implement different kind of Date Format here according to your requirement
+
+            /*setState(() {
+                dateinput.text = formattedDate; //set output date to TextField value.
+              });*/
+          }else{
+            print("Date is not selected");
+          }
+        },
+      ),
+
+
+
+
+      SizedBox(height: 20),
+
+    ],
+  );
+}
+
+Widget _FinnalyAccount() {
+  return Column(
+    children: [
+     _dropDownCategories(userController.nivel),
+      SizedBox(height: 20),
+      TextFormField(
+        decoration: const InputDecoration(
+          labelText: 'Ultimo nome',
+          prefixIcon: Icon(Icons.person),
+        ),
+
+      ),
+      SizedBox(height: 20),
+      TextFormField(
+        decoration: const InputDecoration(
+          labelText: 'Email',
+          prefixIcon: Icon(Icons.email),
+        ),
+      ),
+      SizedBox(height: 20),
+      TextFormField(
+
+        decoration: const InputDecoration(
+          labelText: 'Senha',
+          prefixIcon: Icon(Icons.lock),
+        ),
+      ),
+
+    ],
+  );
+}
+
+ Widget _dropDownCategories(List<NivelAcademicoModel> categories) {
+   return Column(
+     children: [
+       Row(
+         children: [
+           SizedBox(
+             width: 15,
+           ),
+           Text(
+             "Selecione Nivel Academico",
+             style: TextStyle(
+               color: Colors.grey,
+             ),
+           )
+         ],
+       ),
+       Container(
+         padding: EdgeInsets.symmetric(horizontal: 20),
+         child: DropdownButton(
+             underline: Container(
+               alignment: Alignment.centerRight,
+               child: Icon(
+                 Icons.arrow_drop_down_circle,
+                 color: Colors.blue,
+               ),
+             ),
+             elevation: 3,
+             isExpanded: true,
+             hint: Text(
+               "Selecionar o nivel academico",
+               style: TextStyle(
+                 color: Colors.grey,
+                 fontSize: 16,
+               ),
+             ),
+             items: _dropDownItems(categories),
+             value: userController.idnivelacademico,
+             onChanged: (String? option) {
+               setState(() {
+                 userController.idnivelacademico = option!;
+               });
+             }),
+       )
+     ],
+   );
+ }
+
+ Widget ConfirmatioAcount(){
+    return Container(
+      color: white,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+
+              child: Center(child: Icon(Icons.check_circle_outline_sharp, size: 200,color: blue,)),
+            ),
+            SizedBox(height: 10,),
+            Text(
+              "Bem Vindo.",
+              style: TextStyle(fontSize: 30, color: black, decoration: TextDecoration.none),
+            ),
+            SizedBox(height: 15,),
+            Text(
+              "Estamos aqui para ajudar na sua Orientação Profissional! A seguir será apresentado algumas áreas de conhecimento.",
+              style: TextStyle(fontSize: 20, color: Colors.black38, decoration: TextDecoration.none),
+              textAlign: TextAlign.center,
+            ),
+
+            SizedBox(height: 40,),
+            Padding(padding: EdgeInsets.only(top: 60),
+                child:  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: blue,
+                      onPrimary: Colors.white,
+                      shadowColor: blue,
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0)),
+                      minimumSize: Size(300, 50), //////// HERE
+                    ),
+                    child: Text(
+                      'Continuar',
+                      style: TextStyle(fontSize: 20,),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                    }
+                )
+
+            ),
+          ],
+        ),
+      ),
+    );;
+ }
+
+}
+
+class WellCome extends StatefulWidget {
+  const WellCome({Key? key}) : super(key: key);
+
+  @override
+  State<WellCome> createState() => _WellComeState();
+}
+
+class _WellComeState extends State<WellCome> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: white,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+
+              child: Center(child: Icon(Icons.check_circle_outline_sharp, size: 200,color: blue,)),
+            ),
+            SizedBox(height: 10,),
+            Text(
+              "Bem Vindo.",
+              style: TextStyle(fontSize: 30, color: black, decoration: TextDecoration.none),
+            ),
+            SizedBox(height: 15,),
+            Text(
+              "Estamos aqui para ajudar na sua Orientação Profissional! A seguir será apresentado algumas áreas de conhecimento.",
+              style: TextStyle(fontSize: 20, color: Colors.black38, decoration: TextDecoration.none),
+              textAlign: TextAlign.center,
+            ),
+
+            SizedBox(height: 40,),
+            Padding(padding: EdgeInsets.only(top: 60),
+                child:  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: blue,
+                      onPrimary: Colors.white,
+                      shadowColor: blue,
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0)),
+                      minimumSize: Size(300, 50), //////// HERE
+                    ),
+                    child: Text(
+                      'Continuar',
+                      style: TextStyle(fontSize: 20,),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                    }
+                )
+
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+/*
 class RegisterFormBloc extends FormBloc<String, String> {
 
 
   final username = TextFieldBloc(
     validators: [FieldBlocValidators.required],
+
   );
 
   final email = TextFieldBloc<String>(
@@ -151,7 +812,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   List<DropdownMenuItem<String>> _dropDownItems(List<NivelAcademicoModel> categories) {
     List<DropdownMenuItem<String>> list = [];
-
     categories.forEach((category) {
       list.add(
           DropdownMenuItem(child: Text(category.descricao), value: category.id));
@@ -189,7 +849,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      userController.idnivelacademico = '1';
+      userController.idnivelacademico='1';
       userController.init(context, refresh);
     });
 
@@ -219,11 +879,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     LoadingDialog.hide(context);
 
                     if (state.stepCompleted == state.lastStep) {
-                      //userProvider.createUser(,regbloc.username.toString(), regbloc.email.toString(), regbloc.password.toString(), userController.idnivelacademico);
+                      userProvider.createUser(regbloc.username.toString(), regbloc.email.toString(), regbloc.password.toString(), "a86d64d7-0a09-4dce-8b0b-7b7d7c204ec7");
                       /*Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_) => const DialogInitial()));*/
-                      //userProvider.create(UserModel( name: regbloc.username.toString(), email: regbloc.email.toString(), password: regbloc.password.toString(), idnivelacademico: 1));
-                      userController.createUser();
+                      //userController.createUser();
                       /*Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_) => const DialogInitial()));*/
                     }
@@ -314,7 +973,7 @@ class _RegisterPageState extends State<RegisterPage> {
         children: <Widget>[
           TextFieldBlocBuilder(
             textFieldBloc: wizardFormBloc.username,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.name,
             enableOnlyWhenFormBlocCanSubmit: true,
             decoration: const InputDecoration(
               labelText: 'Nome de Usuário',
@@ -429,7 +1088,7 @@ class _RegisterPageState extends State<RegisterPage> {
             items: dropdownCountrs,
             onChanged: (String){},
           ),SizedBox(height: 20,),
-          _dropDownCategories(userController.nivel)
+          //_dropDownCategories(userController.nivel)
         ],
       ),
     );
@@ -447,7 +1106,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
 
               items: _dropDownItems(nivel),
-              value:  userController.idnivelacademico='1',
+              value:  userController.idnivelacademico,
               onChanged: (String ? newValue){
                 setState(() {
                   userController.idnivelacademico = newValue!;
@@ -656,6 +1315,4 @@ class _WellComeState extends State<WellCome> {
   }
 }
 
-
-
-
+*/

@@ -27,16 +27,16 @@ var profile = {
 
 
 List<CategoriesModel> categorie = [
-CategoriesModel(1, "Programação", icon: Icons.code),
-CategoriesModel(2, "Medicina", icon: Icons.local_hospital),
-CategoriesModel(3, "Construção", icon: Icons.engineering),
-CategoriesModel(3, "Desporto", icon: Icons.sports_baseball_rounded),
-CategoriesModel(5, "Gestão e Marketing", icon: Icons.manage_accounts),
-CategoriesModel(6, "Contablidade", icon: Icons.money),
-CategoriesModel(7, "Arte", icon: Icons.design_services),
-CategoriesModel(8, "Transporte", icon: Icons.car_crash),
-CategoriesModel(9, "Petroleo", icon: Icons.local_gas_station_outlined),
-CategoriesModel(10, "Ambiente", icon: Icons.airplane_ticket),
+CategoriesModel("1", "Programação", icon: Icons.code),
+CategoriesModel("2", "Medicina", icon: Icons.local_hospital),
+CategoriesModel("3", "Construção", icon: Icons.engineering),
+CategoriesModel("3", "Desporto", icon: Icons.sports_baseball_rounded),
+CategoriesModel("5", "Gestão e Marketing", icon: Icons.manage_accounts),
+CategoriesModel("6", "Contablidade", icon: Icons.money),
+CategoriesModel("7", "Arte", icon: Icons.design_services),
+CategoriesModel("8", "Transporte", icon: Icons.car_crash),
+CategoriesModel("9", "Petroleo", icon: Icons.local_gas_station_outlined),
+CategoriesModel("10", "Ambiente", icon: Icons.airplane_ticket),
 ];
 
 

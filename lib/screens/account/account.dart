@@ -1,10 +1,13 @@
 import 'dart:io';
+import 'package:direcionamento/provider/user_provider.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/Custom_settingbox.dart';
+import 'package:direcionamento/widgets/bottomNavigationBar.dart';
 import 'package:direcionamento/widgets/custom_image.dart';
 import 'package:direcionamento/widgets/custom_settingitem.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/user_model.dart';
 import '../../utils/data.dart';
 
 
@@ -17,23 +20,35 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+
+  UserProvider userProvider = UserProvider();
+  late Future<List<UserModel>> users;
+
+  @override
+  void initState() {
+    super.initState();
+      users = userProvider.readUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          backgroundColor: appBarColor,
-          foregroundColor: black,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: getHeader(),
-        ),
-        SliverToBoxAdapter(
-          child: getBody(),
-        ),
-      ],
-
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: appBarColor,
+            foregroundColor: black,
+            pinned: true,
+            snap: true,
+            floating: true,
+            title: getHeader(),
+          ),
+          SliverToBoxAdapter(
+            child: getBody(),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BootomNavigationBar(),
     );
   }
 
@@ -53,7 +68,27 @@ class _AccountPageState extends State<AccountPage> {
   Widget getBody(){
     return SingleChildScrollView(
       padding: EdgeInsets.only(left: 15, right: 15),
-      child: Column(
+      child: FutureBuilder<List<UserModel>>(
+            future:  users,
+            builder: (context, snapshot){
+              if(snapshot.hasData){
+                return ListView.builder(
+                  itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index){
+                      UserModel model = snapshot.data![index];
+                    return ListTile(
+                      title: Text(model.name),
+                       subtitle: Text(model.email),
+                    );
+
+                });
+              }else if(snapshot.hasError){
+                return Text(snapshot.error.toString());
+              }
+              return const CircularProgressIndicator();
+            },
+      )
+      /*Column(
         children: [
           Column(
             children: [
@@ -183,8 +218,10 @@ class _AccountPageState extends State<AccountPage> {
             ),
           )
         ],
-      ),
+      ),*/
 
     );
   }
+
+
 }

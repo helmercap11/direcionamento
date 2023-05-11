@@ -6,6 +6,8 @@ import 'package:direcionamento/screens/tabs/university/mestrado_tab.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_all.dart';
+
 
 
 class UniversityPage extends StatelessWidget {
@@ -53,7 +55,7 @@ class UniversityPage extends StatelessWidget {
                   text: "Todos",
                 ),
                 Tab( icon: Icon(Icons.school_outlined),
-                  text: "Mestrado",
+                  text: instituicaoModel.name
                 ),
                 Tab(
                   icon: Icon(Icons.school),
@@ -65,7 +67,7 @@ class UniversityPage extends StatelessWidget {
           backgroundColor: Color(0xfff0f0f0),
           body: TabBarView(children: [
 
-            AllTab(),
+            _AllTab(),
             MestradoTab(),
             Text("data")
             //MestradoTab(),
@@ -77,6 +79,20 @@ class UniversityPage extends StatelessWidget {
             ),*/
           ]),
         )
+    );
+  }
+
+  Widget _AllTab() {
+    return SafeArea(
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text("Novos Topicos", style: TextStyle(fontSize: 20, color: Colors.grey),),
+          ),
+          CustomAll()
+        ],
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
 
 
 class AreaConhecimentoModel {
-  int idareaconhecimento = 0;
+  String idareaconhecimento = "";
   String name = "";
   //bool isSelected = false;
 
