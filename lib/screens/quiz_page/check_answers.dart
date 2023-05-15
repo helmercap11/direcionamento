@@ -1,11 +1,13 @@
 import 'dart:io';
-import 'package:direcionamento/quiz_page/quiz_home.dart';
+import 'package:direcionamento/screens/quiz_page/quiz_home.dart';
 import 'package:direcionamento/screens/root_app/root_app.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-import '../model/Question.dart';
+import '../../model/Question.dart';
+
+
 
 
 

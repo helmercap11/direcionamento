@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:direcionamento/controllers/areaconhecimento_controller.dart';
+import 'package:direcionamento/model/areaconhecimento_model.dart';
 import 'package:direcionamento/provider/user_provider.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:direcionamento/widgets/Custom_settingbox.dart';
@@ -22,12 +25,24 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
 
   UserProvider userProvider = UserProvider();
-  late Future<List<UserModel>> users;
+  AreaConhecimentoController controller = AreaConhecimentoController();
+  //late Future<List<UserModel>> users;
+  //late List users;
+
+  String idusuario ="f300fceb-fa51-4b78-9e20-cfd138d028d0";
+  var users = <AreaConhecimentoModel>[];
+  _getUsers() {
+    //userProvider.readUsers();
+    controller.fetchAreas();
+
+
+  }
 
   @override
   void initState() {
     super.initState();
-      users = userProvider.readUsers();
+    _getUsers();
+      //userProvider.readUsers(idusuario);
   }
 
   @override
@@ -68,25 +83,14 @@ class _AccountPageState extends State<AccountPage> {
   Widget getBody(){
     return SingleChildScrollView(
       padding: EdgeInsets.only(left: 15, right: 15),
-      child: FutureBuilder<List<UserModel>>(
-            future:  users,
-            builder: (context, snapshot){
-              if(snapshot.hasData){
-                return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index){
-                      UserModel model = snapshot.data![index];
-                    return ListTile(
-                      title: Text(model.name),
-                       subtitle: Text(model.email),
-                    );
-
-                });
-              }else if(snapshot.hasError){
-                return Text(snapshot.error.toString());
-              }
-              return const CircularProgressIndicator();
-            },
+      child: ListView.builder(
+          itemCount: users.length ,
+          itemBuilder: (BuildContext context, int index) {
+            var name = users[index].name;
+            return ListTile(
+              title: Text(name),
+            );
+          }
       )
       /*Column(
         children: [

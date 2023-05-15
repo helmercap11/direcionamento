@@ -14,16 +14,27 @@ var profile = {
   "email" : "helmer@gmail.com"
 };
 
-/*List<AreaConhecimentoModel> studyModel =[
-  AreaConhecimentoModel("Ciências Exatas", false),
-  AreaConhecimentoModel("Ciências Biológicas", false),
-  AreaConhecimentoModel("Ciências da Saúde", false),
-  AreaConhecimentoModel("Ciências Agrárias", false),
-  AreaConhecimentoModel("Ciências Humanas", false),
-  AreaConhecimentoModel("Ciências Sociais Aplicadas", false),
-  AreaConhecimentoModel("Engenharias", false),
-  AreaConhecimentoModel("Linguística, Letras e Artes", false),
-];*/
+List<AreaConhe> studyModel =[
+  AreaConhe(1,"Ciências Exatas", false),
+  AreaConhe(2,"Ciências Biológicas", false),
+  AreaConhe(3,"Ciências da Saúde", false),
+  AreaConhe(4,"Ciências Agrárias", false),
+  AreaConhe(4,"Ciências Humanas", false),
+  AreaConhe(6,"Ciências Sociais Aplicadas", false),
+  AreaConhe(9,"Engenharias", false),
+  AreaConhe(10,"Linguística, Letras e Artes", false),
+];
+
+List<AreaConhecimentoModel> studyMode =[
+  AreaConhecimentoModel("Ciências Exatas", "false"),
+  AreaConhecimentoModel("Ciências Biológicas", "false"),
+  AreaConhecimentoModel("Ciências da Saúde", "false"),
+  AreaConhecimentoModel("Ciências Agrárias", "false"),
+  AreaConhecimentoModel("Ciências Humanas", "false"),
+  AreaConhecimentoModel("Ciências Sociais Aplicadas", "false"),
+  AreaConhecimentoModel("Engenharias", "false"),
+  AreaConhecimentoModel("Linguística, Letras e Artes", "false"),
+];
 
 
 List<CategoriesModel> categorie = [
@@ -117,7 +128,7 @@ List<University> universty =[
 
 List <Course> courses = [
   Course(
-    //idcurso: 1,
+      id: "1",
       name: "Engenharia Informática",
       image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       about: "1 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
@@ -129,7 +140,7 @@ List <Course> courses = [
 
   ),
   Course(
-    // idcurso: 2,
+      id: "1",
       name: "Informática de Gestão",
      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5mb3JtYXRpY2ElMjBkZSUyMGdlc3QlQzMlQTNvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
      about: "2 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
@@ -140,7 +151,7 @@ List <Course> courses = [
       saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
   ),
   Course(
-    // idcurso: 3,
+      id: "1",
       name: "Direito",
       image: "https://media.istockphoto.com/id/1388925357/pt/foto/the-statue-of-justice-lady-justice-or-iustitia-justitia-the-roman-goddess-of-justice.jpg?b=1&s=170667a&w=0&k=20&c=xCDIAdHZNnd-N4IYF1zViXhwx6BHIRCjwAYKLa8xRik=",
       about: "3 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
@@ -151,7 +162,7 @@ List <Course> courses = [
       saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
   ),
   Course(
-    // idcurso: 4,
+      id: "1",
       name: "Engenharia Informática",
       image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       about: "4 Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
@@ -162,7 +173,7 @@ List <Course> courses = [
       saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
   ),
   Course(
-    //idcurso: 5,
+      id: "1",
       name: "Engenharia Informática",
       image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       about: "Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",
@@ -173,7 +184,7 @@ List <Course> courses = [
       saida: "As principais saídas profissionais previstas para os Engenheiros Informáticos licenciados na UGS são o exercício de funções técnicas e de direcção:"
   ),
   Course(
-    // idcurso: 6,
+      id: "1",
       name: "Engenharia Informática",
       image: "https://images.unsplash.com/photo-1574027542183-77efe00ca49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGluZm9ybWF0aWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       about: "Os cursos de Engenharia Informática da FENT têm como objecto preparar Engenheiros informáticos de concepção aptos a intervir em múltiplos sectores económicos.",

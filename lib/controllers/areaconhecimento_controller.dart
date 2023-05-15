@@ -24,12 +24,25 @@ class AreaConhecimentoController {
 
 
   Future<List<AreaConhecimentoModel>> fetchAreas() async {
-    final http.Response response = await http.get(Uri.parse('$url/read'));
+    final http.Response response = await http.get(Uri.parse('$url/getAll'));
 
     if(response.statusCode ==200) {
       return compute(parseAreaConhecimento, response.body);
     } else {
       throw Exception(response.statusCode);
+    }
+  }
+
+  Future<List<AreaConhecimentoModel>> fetchNew() async {
+    final response = await http.get(Uri.parse('$baseUrl/api/areaconhecimento/getAll'));
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      return List<AreaConhecimentoModel>.from(json.map((elemento) {
+        return AreaConhecimentoModel.fromJson(elemento);
+      }));
+    } else {
+      return Future.error("Ocorreu um erro.");
     }
   }
 

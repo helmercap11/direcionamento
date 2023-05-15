@@ -1,6 +1,13 @@
-import 'package:direcionamento/quiz_page/quiz_home.dart';
+import 'package:direcionamento/screens/teste.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
+import '../../area_page/area_page.dart';
+import '../../controllers/user_controller.dart';
+import '../../model/nivel_academico_model.dart';
+import '../../provider/nivel_academico_provider.dart';
+import '../../provider/user_provider.dart';
 import '../../theme/global_color.dart';
 import '../home_page/home_page.dart';
 
@@ -149,7 +156,7 @@ class _WellComeState extends State<WellCome> {
 
             ),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> QuizHome()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> RodaApp()));
             }, child: Text("text")),
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
@@ -161,3 +168,6 @@ class _WellComeState extends State<WellCome> {
     );
   }
 }
+
+
+

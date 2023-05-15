@@ -1,4 +1,6 @@
+import 'package:direcionamento/screens/account/profile.dart';
 import 'package:direcionamento/screens/school_page/institucao_page.dart';
+import 'package:direcionamento/screens/search_school/search_instituicao.dart';
 import 'package:direcionamento/screens/search_school/search_school.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +61,7 @@ class CustomBootomNavigationBar extends StatelessWidget {
                 new BottomNavigationBarItem(
                   icon: InkWell(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SearchSchool()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SearchInstituicao()));
                     },
                     child: Icon(
                       Icons.search,
@@ -99,10 +101,18 @@ class CustomBootomNavigationBar extends StatelessWidget {
                  label: 'Noti',
                 ),
                 new BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person,
-                      size: 30,
-                      //color: primary,
+                    icon: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Profile()));
+                      },
+                      child: Icon(
+                        Icons.person,
+                        size: 30,
+                        //color: primary,
+                      ),
                     ),
                     label: 'Account')
               ],

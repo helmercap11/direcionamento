@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:direcionamento/model/categories_model.dart';
-import 'package:direcionamento/quiz_page/quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/annotations.dart';
 
 import '../model/Question.dart';
+import '../screens/quiz_page/quiz_page.dart';
 import '../utils/data.dart';
 
 

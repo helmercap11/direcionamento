@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:direcionamento/model/instituicao_model.dart';
 import 'package:direcionamento/model/university.dart';
 import 'package:direcionamento/screens/tabs/university/all_tab.dart';
+import 'package:direcionamento/screens/tabs/university/licenciatura_tab.dart';
 import 'package:direcionamento/screens/tabs/university/mestrado_tab.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class UniversityPage extends StatelessWidget {
                   text: "Todos",
                 ),
                 Tab( icon: Icon(Icons.school_outlined),
-                  text: instituicaoModel.name
+                  text: "Mestrado"
                 ),
                 Tab(
                   icon: Icon(Icons.school),
@@ -69,7 +70,7 @@ class UniversityPage extends StatelessWidget {
 
             _AllTab(),
             MestradoTab(),
-            Text("data")
+            LicenciaturaTab()
             //MestradoTab(),
             /* Column(
               children: [

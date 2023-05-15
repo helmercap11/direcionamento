@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 
-import '../model/Question.dart';
+import '../../model/Question.dart';
+
 import 'check_answers.dart';
 
 

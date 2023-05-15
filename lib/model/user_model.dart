@@ -53,3 +53,33 @@ class UserModel{
       value is int || value == value.roundToDouble();
 
 }
+
+
+class UseModel {
+  String idusuario = "";
+  String email = "";
+  String name = "";
+  //bool isSelected = false;
+
+  UseModel(this.idusuario,this.name, this.email);
+
+
+  UseModel.fromJson(Map<String, dynamic> json){
+    idusuario = json['idusuario'];
+    email = json['email'];
+    name = json['nome'];
+    // isSelected = json['false'];
+  }
+
+
+
+
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data  = <String, dynamic>{};
+    data['idusuario'] = idusuario;
+    data['email'];
+    data['nome'] = name;
+    //data['false'] = isSelected;
+    return data;
+  }
+}

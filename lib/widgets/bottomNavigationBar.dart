@@ -1,5 +1,7 @@
 import 'package:direcionamento/screens/account/account.dart';
+import 'package:direcionamento/screens/account/profile.dart';
 import 'package:direcionamento/screens/school_page/institucao_page.dart';
+import 'package:direcionamento/screens/search_school/search_instituicao.dart';
 import 'package:direcionamento/screens/search_school/search_school.dart';
 import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +54,7 @@ class BootomNavigationBar extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SearchSchool()));
+                                  builder: (context) => SearchInstituicao()));
                         },
                         child: Icon(
                           Icons.search,
@@ -64,6 +66,7 @@ class BootomNavigationBar extends StatelessWidget {
                   ),
                   label: 'Pesquisar',
                 ),
+
                 new BottomNavigationBarItem(
                   icon: InkWell(
                     onTap: () {
@@ -73,7 +76,7 @@ class BootomNavigationBar extends StatelessWidget {
                               builder: (context) => InstituicaoPage()));
                     },
                     child: Icon(
-                      Icons.home,
+                      Icons.school,
                       size: 30,
                       color: white,
                     ),
@@ -81,13 +84,14 @@ class BootomNavigationBar extends StatelessWidget {
                   label: 'home',
                 ),
 
+
                 new BottomNavigationBarItem(
                     icon: InkWell(
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AccountPage()));
+                                builder: (context) => Profile()));
                       },
                       child: Icon(
                         Icons.person,

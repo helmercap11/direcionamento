@@ -1,32 +1,25 @@
-import 'dart:io';
-import 'package:direcionamento/controllers/areaconhecimento_controller.dart';
-import 'package:direcionamento/model/areaconhecimento_model.dart';
-import 'package:direcionamento/model/course.dart';
-import 'package:direcionamento/screens/components/list.dart';
-import 'package:direcionamento/screens/components/loading.dart';
-import 'package:direcionamento/screens/components/search.dart';
-import 'package:direcionamento/screens/field_Study_details/field_study_details.dart';
-import 'package:direcionamento/screens/root_app/root_app.dart';
-import 'package:direcionamento/screens/school_page/institucao_page.dart';
-import 'package:direcionamento/theme/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
-import '../../utils/data.dart';
+import '../model/areaconhecimento_model.dart';
+import '../screens/quiz_page/quiz_home.dart';
+import '../theme/global_color.dart';
+import '../utils/data.dart';
 
-/*List<AreaConhecimentoModel> fieldStudy = studyModel;
 
-List<AreaConhecimentoModel> selectedFieldStudy = [];
+List<AreaConhe> fieldStudy = studyModel;
+
+List<AreaConhe> selectedFieldStudy = [];
 
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class AreaPage extends StatefulWidget {
+  const AreaPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AreaPage> createState() => _AreaPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AreaPageState extends State<AreaPage> {
 
 
 
@@ -65,6 +58,7 @@ class _HomePageState extends State<HomePage> {
                           margin: EdgeInsets.all(7.0),
                             elevation: 7.0,
                             child: FieldStudyItem(
+                                studyModel[index].id,
                                 studyModel[index].name,
                                 studyModel[index].isSelected,
                                 index
@@ -106,7 +100,7 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  Widget FieldStudyItem(String name, bool isSelected, int index){
+  Widget FieldStudyItem(int id, String name, bool isSelected, int index){
     return ListTile(
         title: Text(
           name, style: TextStyle(
@@ -121,7 +115,7 @@ class _HomePageState extends State<HomePage> {
           setState((){
             studyModel[index].isSelected = !studyModel[index].isSelected;
             if(studyModel[index].isSelected == true) {
-              selectedFieldStudy.add(AreaConhecimentoModel(name, true));
+              selectedFieldStudy.add(AreaConhe(id,name, true));
             } else if(studyModel[index].isSelected == false){
               selectedFieldStudy
                 .removeWhere((element) => element.name == studyModel[index].name);
@@ -148,6 +142,7 @@ class AllFilds extends FormBloc<String, String>{
   );
   final multiSelect1 = MultiSelectFieldBloc<String, dynamic>(
       items: [
+
         'Informática',
         'Arquitetura',
         'Construção Cívil',
@@ -243,7 +238,7 @@ class SubjectForm extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) =>QuizHome()));
                   },
                   icon: Icon(Icons.save, color: white,),
-                  label: Text('Guargar Dados',style: TextStyle(color: white),),
+                  label: Text('Enviar Dados',style: TextStyle(color: white),),
                 )
               ],
             ),
@@ -325,72 +320,3 @@ class SubjectForm extends StatelessWidget {
 }
 
 
-*/
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-  AreaConhecimentoController areaConhecimentoController = AreaConhecimentoController();
-  final List<AreaConhecimentoModel> _listAreaModel = <AreaConhecimentoModel>[];
-  List<AreaConhecimentoModel> _listAreaDisplay = <AreaConhecimentoModel>[];
-
-
-  bool _isLoading = true;
-
-
-  @override
-  void initState() {
-    super.initState();
-    areaConhecimentoController.fetchAreas().then((value) {
-      setState((){
-        _isLoading = false;
-        _listAreaModel.addAll(value);
-        _listAreaDisplay = _listAreaModel;
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primary,
-        title: const Text("Orientação Profissional"),
-        automaticallyImplyLeading: false,
-      ),
-      body: SafeArea(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-
-            if (!_isLoading) {
-              return index == 0
-                  ? SearchAreaConhecimento(
-                hintText: 'Pesquisar Área de Conhecimento.',
-                onChanged: (searchText) {
-                  searchText = searchText.toLowerCase();
-                  setState(() {
-                    _listAreaDisplay = _listAreaModel.where((u) {
-                      var nameLowerCase = u.name.toLowerCase();
-                      return nameLowerCase.contains(searchText);
-
-                    }).toList();
-                  });
-                },
-              )
-                  : AreaList(areaConhecimentoModel: _listAreaDisplay[index - 1]);
-            } else {
-              return const MyLoading();
-            }
-          },
-          itemCount: _listAreaDisplay.length +1,
-        ),
-      ),
-    );
-  }
-}

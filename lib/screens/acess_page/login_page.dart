@@ -34,7 +34,6 @@ class _LoginPageState extends State<LoginPage> {
 
 
   void _homepage() async  {
-
     FocusScopeNode scopeNode =   FocusScope.of(context);
     if (_formKey.currentState!.validate()) {
      var rigth = await userProvider.Authentication(_controlleremail.text,_controllersenha.text);

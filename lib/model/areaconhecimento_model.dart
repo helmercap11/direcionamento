@@ -14,6 +14,9 @@ class AreaConhecimentoModel {
    // isSelected = json['false'];
   }
 
+
+  bool get isSelected => false;
+
   Map<String, dynamic> toJson(){
       final Map<String, dynamic> data  = <String, dynamic>{};
       data['idareaconhecimento'] = idareaconhecimento;
@@ -21,4 +24,13 @@ class AreaConhecimentoModel {
       //data['false'] = isSelected;
       return data;
   }
+}
+
+
+class AreaConhe {
+  int id = 0;
+  String name = "";
+  bool isSelected = false;
+
+  AreaConhe(this.id,this.name, this.isSelected);
 }

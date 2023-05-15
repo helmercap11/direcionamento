@@ -79,7 +79,8 @@ class UserProvider {
 
 
   Future<List<UserModel>> readUsers() async {
-    final http.Response response = await http.get(Uri.parse('$api/users'));
+    final response = await http.get(Uri.parse('$api/profile/read'));
+    //final http.Response response = await http.get(Uri.parse('$api/profile/:$idusuario'));
 
 
     if (response.statusCode == 200) {

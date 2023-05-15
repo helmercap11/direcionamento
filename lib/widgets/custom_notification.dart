@@ -18,17 +18,17 @@ class CustomNotification extends StatelessWidget {
       onTap: onTap,
       child: Container(
           padding: EdgeInsets.all(size),
-          decoration: BoxDecoration(
+          /*decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: white,
             border: Border.all(color: Colors.grey.withOpacity(.3)),
-          ),
+          ),*/
           child: notifiedNumber  > 0 ? Badge(
             badgeColor: actionColor,
             padding: EdgeInsets.all(3),
             position: BadgePosition.topEnd(top: -7, end: 0),
-            badgeContent: Text('2', style: TextStyle(color: Colors.white),),
-            child: SvgPicture.asset("assets/icons/bell.svg", width: 20, height: 20,),
+            //badgeContent: Text('2', style: TextStyle(color: Colors.white),),
+            child: SvgPicture.asset("assets/icons/logout.svg", width: 20, height: 20,),
           )
               :
           SvgPicture.asset("assets/icon/bell/svg")

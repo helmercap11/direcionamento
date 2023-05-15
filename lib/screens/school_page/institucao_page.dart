@@ -217,7 +217,6 @@ class _InstituicaoPageState extends State<InstituicaoPage> {
             final instituicao = snapshot.data as List<InstituicaoModel>;
             return ListInstituicao(instituicaoModel: instituicao);
           } else if(snapshot.hasError) {
-
             return Center(
               child: Text(
                 snapshot.error.toString(),

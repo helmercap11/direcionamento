@@ -1,5 +1,5 @@
 class InstituicaoModel {
-  int id =0;
+  String id ="";
  String name = "",image ="",location ="", provincia ="", tipo="";
 
 
