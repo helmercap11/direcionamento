@@ -31,7 +31,7 @@ class _InstituicaoDetailsState extends State<InstituicaoDetails> {
               Card(
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.network('$baseUrl/${widget.instituicaoModel.image}') /*Image.asset(widget.instituicaoModel.image)*/,
+                child: Image.network('http://192.168.128.2:3000/public/${widget.instituicaoModel.image}') /*Image.asset(widget.instituicaoModel.image)*/,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3.0)),
                 elevation: 1,
