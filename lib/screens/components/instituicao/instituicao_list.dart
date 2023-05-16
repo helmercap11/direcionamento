@@ -46,7 +46,7 @@ class _InstituicaoListState extends State<InstituicaoList> {
                     border: Border.all(width: 3, color: Colors.grey),
                     image: DecorationImage(
                         alignment: Alignment.bottomCenter,
-                        image: NetworkImage(widget.instituicaoModel.image.toString()),fit: BoxFit.fill
+                        image: NetworkImage(widget.instituicaoModel.image),fit: BoxFit.fill
                     )
                 ),
               ),

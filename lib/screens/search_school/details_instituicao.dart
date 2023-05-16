@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:direcionamento/model/instituicao_model.dart';
 import 'package:direcionamento/theme/global_color.dart';
+import 'package:direcionamento/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 
@@ -30,7 +31,7 @@ class _InstituicaoDetailsState extends State<InstituicaoDetails> {
               Card(
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.network(widget.instituicaoModel.image) /*Image.asset(widget.instituicaoModel.image)*/,
+                child: Image.network('$baseUrl/${widget.instituicaoModel.image}') /*Image.asset(widget.instituicaoModel.image)*/,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3.0)),
                 elevation: 1,
